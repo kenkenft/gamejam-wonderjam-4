@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Analyti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.SpriteShape.Runtime", "Unity.2D.SpriteShape.Runtime.csproj", "{167515c0-8c97-e16e-40a0-8a9d429f0811}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{8facff63-9aa3-1e76-f24e-ca6475f30c61}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Scheduler", "Unity.Services.Core.Scheduler.csproj", "{5ae5da9c-feee-620a-47c6-e61b61f2fe72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Registration", "Unity.Services.Core.Registration.csproj", "{e4b6fbdc-2847-6222-09a4-eb3b8099094a}"
@@ -158,6 +160,8 @@ Global
 		{3ccd53d2-5743-9e08-a0dd-f1d08c094f13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{167515c0-8c97-e16e-40a0-8a9d429f0811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{167515c0-8c97-e16e-40a0-8a9d429f0811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8facff63-9aa3-1e76-f24e-ca6475f30c61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8facff63-9aa3-1e76-f24e-ca6475f30c61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ae5da9c-feee-620a-47c6-e61b61f2fe72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ae5da9c-feee-620a-47c6-e61b61f2fe72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{e4b6fbdc-2847-6222-09a4-eb3b8099094a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
