@@ -33,4 +33,9 @@ public class TileProperties : MonoBehaviour
     {
         Debug.Log("Tile Clicked!");
     }
+
+    public bool GetIsOccupied()
+    {
+        return _isOccupied;
+    }
 }

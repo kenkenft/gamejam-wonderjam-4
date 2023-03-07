@@ -5,27 +5,27 @@ using UnityEngine.UI;
 
 public class CannonBallDisplay : MonoBehaviour
 {
-    public CannonBall cb;
+    public CannonBall Cb;
 
-    public Text nameText, descriptionText;
+    public Text NameText, DescriptionText;
 
-    public Image portrait;
-    public SpriteRenderer spriteRenderer;
-    public int capacitySize, damage, areaOfEffect, recoveryTime;
+    public Image Portrait;
+    public SpriteRenderer SpriteRenderer;
+    public int CapacitySize, Damage, AreaOfEffect, RecoveryTime;
 
     void Start()
     {
-        if(cb != null)
+        if(Cb != null)
         {
-            Debug.Log(cb.name);
+            Debug.Log(Cb.Name);
             // nameText.text = cb.name;
             // descriptionText.text = cb.description;
             // portrait = cb.artwork;
-            spriteRenderer.sprite = cb.sprite;
-            capacitySize = cb.capacitySize;
-            damage = cb.damage;
-            areaOfEffect = cb.areaOfEffect;
-            recoveryTime = cb.recoveryTime;
+            SpriteRenderer.sprite = Cb.Sprite;
+            CapacitySize = Cb.CapacitySize;
+            Damage = Cb.Damage;
+            AreaOfEffect = Cb.AreaOfEffect;
+            RecoveryTime = Cb.RecoveryTime;
         }
     }
 }

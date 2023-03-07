@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBXKing
   m_EditorClassIdentifier: 
-  name: King Cannonball
-  description: The ruler of the kingdom. An absolute unit
-  sprite: {fileID: 21300000, guid: 834fa8f10fa93a24e989c48a1e7528cd, type: 3}
-  helpPortrait: {fileID: 0}
-  capacitySize: 4
-  damage: 100
-  areaOfEffect: 4
-  recoveryTime: 4
+  Name: King Cannonball
+  Description: The ruler of the kingdom. An absolute unit
+  Sprite: {fileID: 21300000, guid: 834fa8f10fa93a24e989c48a1e7528cd, type: 3}
+  HelpPortrait: {fileID: 0}
+  CapacitySize: 4
+  Damage: 100
+  AreaOfEffect: 4
+  RecoveryTime: 4

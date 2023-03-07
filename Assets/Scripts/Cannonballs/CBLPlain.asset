@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBLPlain
   m_EditorClassIdentifier: 
-  name: Large Iron Cannonball
-  description: Larger than average cannonball. Damage and area of effect is more
+  Name: Large Iron Cannonball
+  Description: Larger than average cannonball. Damage and area of effect is more
     than average
-  sprite: {fileID: 21300000, guid: bde7af6e6176895418db0fba3d34b30d, type: 3}
-  helpPortrait: {fileID: 0}
-  capacitySize: 3
-  damage: 7
-  areaOfEffect: 2
-  recoveryTime: 3
+  Sprite: {fileID: 21300000, guid: bde7af6e6176895418db0fba3d34b30d, type: 3}
+  HelpPortrait: {fileID: 0}
+  CapacitySize: 3
+  Damage: 7
+  AreaOfEffect: 2
+  RecoveryTime: 3

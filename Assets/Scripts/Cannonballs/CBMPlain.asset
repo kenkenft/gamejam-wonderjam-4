@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBMPlain
   m_EditorClassIdentifier: 
-  name: Reg. Iron Cannonball
-  description: The standard cannonball. Average and round.
-  sprite: {fileID: 21300000, guid: 80f1ba7c223a29f4dbc590b5cd91c34f, type: 3}
-  helpPortrait: {fileID: 0}
-  capacitySize: 2
-  damage: 4
-  areaOfEffect: 1
-  recoveryTime: 2
+  Name: Reg. Iron Cannonball
+  Description: The standard cannonball. Average and round.
+  Sprite: {fileID: 21300000, guid: 80f1ba7c223a29f4dbc590b5cd91c34f, type: 3}
+  HelpPortrait: {fileID: 0}
+  CapacitySize: 2
+  Damage: 4
+  AreaOfEffect: 1
+  RecoveryTime: 2
