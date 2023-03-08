@@ -10,5 +10,5 @@ public class CannonBall : ScriptableObject
     public string Description;
     public Sprite Sprite;
     public Image HelpPortrait;
-    public int CapacitySize, Damage, AreaOfEffect, RecoveryTime;
+    public int TypeID, CapacitySize, Damage, AreaOfEffect, RecoveryTime;
 }

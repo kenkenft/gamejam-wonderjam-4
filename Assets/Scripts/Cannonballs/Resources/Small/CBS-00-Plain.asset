@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
-  m_Name: CBMPlain
+  m_Name: CBS-00-Plain
   m_EditorClassIdentifier: 
-  Name: Reg. Iron Cannonball
-  Description: The standard cannonball. Average and round.
-  Sprite: {fileID: 21300000, guid: 80f1ba7c223a29f4dbc590b5cd91c34f, type: 3}
+  Name: Small Iron Cannonball
+  Description: Smaller than normal cannonball. Still packs a punch
+  Sprite: {fileID: 21300000, guid: c88c8739af33d7a468ace6873afe4994, type: 3}
   HelpPortrait: {fileID: 0}
-  CapacitySize: 2
-  Damage: 4
-  AreaOfEffect: 1
-  RecoveryTime: 2
+  CapacitySize: 1
+  Damage: 2
+  AreaOfEffect: 0
+  RecoveryTime: 0
