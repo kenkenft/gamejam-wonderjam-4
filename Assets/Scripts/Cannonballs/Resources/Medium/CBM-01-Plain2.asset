@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBM-01-Plain2
   m_EditorClassIdentifier: 
-  Name: Medium CannonBall Test 2
+  CannonBallName: Med CannonBall 2
   Description: For testing ammo pool manager. It has a gold skin
-  Sprite: {fileID: 21300000, guid: 1dc11430047c5724ab63a799d536e968, type: 3}
-  HelpPortrait: {fileID: 0}
   TypeID: 1
+  LevelSprite: {fileID: 21300000, guid: 1dc11430047c5724ab63a799d536e968, type: 3}
+  HelpPortrait: {fileID: 0}
   CapacitySize: 2
   Damage: 4
   AreaOfEffect: 1

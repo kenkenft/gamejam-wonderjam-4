@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TileProperties : MonoBehaviour
 {
-    private bool _isOccupied, _isTargetable;
-    private int[] tileXY = new int[2]; // tile's column and row position on targetable grid. index 0 is column, index 1 is row
-    private GameObject _occupant;
+    [SerializeField] private bool _isOccupied, _isTargetable;
+    [SerializeField] private int[] tileXY = new int[2]; // tile's column and row position on targetable grid. index 0 is column, index 1 is row
+    [SerializeField] private GameObject _occupant;
 
     public void SetUp()
     {
@@ -37,5 +37,20 @@ public class TileProperties : MonoBehaviour
     public bool GetIsOccupied()
     {
         return _isOccupied;
+    }
+
+    public void SetOccupant(GameObject newOccupant)
+    {
+        _occupant = newOccupant;
+    }
+
+    public GameObject GetOccupant()
+    {
+        return _occupant;
+    }
+
+    public void RemoveOccupant()
+    {
+        _occupant = null;
     }
 }

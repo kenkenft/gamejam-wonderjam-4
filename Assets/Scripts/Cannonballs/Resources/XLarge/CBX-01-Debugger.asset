@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBX-01-Debugger
   m_EditorClassIdentifier: 
-  Name: Extra Large CannonBall 2
+  CannonBallName: XL Ball 2
   Description: Another cannonball for testing the pool manager.
-  Sprite: {fileID: 21300000, guid: 2cb0d678809fc5e4182561272ee1d54f, type: 3}
-  HelpPortrait: {fileID: 0}
   TypeID: 1
+  LevelSprite: {fileID: 21300000, guid: 2cb0d678809fc5e4182561272ee1d54f, type: 3}
+  HelpPortrait: {fileID: 0}
   CapacitySize: 4
   Damage: 50
   AreaOfEffect: 4

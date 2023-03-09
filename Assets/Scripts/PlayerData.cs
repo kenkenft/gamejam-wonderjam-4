@@ -8,7 +8,7 @@ public class PlayerData : ScriptableObject
     // private int[] _cannonBallPoolSmall = new int[8], _cannonBallPoolMedium = new int[6], 
     //                     _cannonBallPoolLarge = new int[4], _cannonBallPoolXLarge = new int[2];  // Array values represent the CannonBall type's id
 
-    private Dictionary<string, string[]> _poolDictionary = new Dictionary<string, string[]>()
+    [SerializeField] private Dictionary<string, string[]> _poolDictionary = new Dictionary<string, string[]>()
                                                                                         {
                                                                                             {"s", new string[8]},
                                                                                             {"m", new string[6]},
@@ -33,7 +33,13 @@ public class PlayerData : ScriptableObject
     void SetPoolToDefault(string[] pool, string typePrefix)
     {
         for(int i = 0; i < pool.Length; i++)
-            pool[i] = typePrefix + 0.ToString();
+        {    
+            if(i % 2 == 0)
+                pool[i] = typePrefix + 0.ToString();
+            else
+                pool[i] = typePrefix + 1.ToString();
+
+        }
     }
 
     public void SetPlayerMoney(int amount)
@@ -48,6 +54,7 @@ public class PlayerData : ScriptableObject
 
     public string[] GetCannonBallPool(string target)
     {
+        ResetPlayerData();
         return _poolDictionary[target];
         // switch(target)
         // {

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBL-01-Plain2
   m_EditorClassIdentifier: 
-  Name: Large Cannon Ball Test 2
+  CannonBallName: L CannonBall 2
   Description: Another Cannonball for testing. It's gold coloured
-  Sprite: {fileID: 21300000, guid: ee0f6da797ed0cf4eb2de1c72005cfc2, type: 3}
-  HelpPortrait: {fileID: 0}
   TypeID: 1
+  LevelSprite: {fileID: 21300000, guid: ee0f6da797ed0cf4eb2de1c72005cfc2, type: 3}
+  HelpPortrait: {fileID: 0}
   CapacitySize: 3
   Damage: 4
   AreaOfEffect: 1

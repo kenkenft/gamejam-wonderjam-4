@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175a49ee5124b7548a72dff7817f6fcb, type: 3}
   m_Name: CBS-00-Plain
   m_EditorClassIdentifier: 
-  Name: Small Iron Cannonball
+  CannonBallName: Small Iron Cannonball
   Description: Smaller than normal cannonball. Still packs a punch
-  Sprite: {fileID: 21300000, guid: c88c8739af33d7a468ace6873afe4994, type: 3}
+  TypeID: 0
+  LevelSprite: {fileID: 21300000, guid: c88c8739af33d7a468ace6873afe4994, type: 3}
   HelpPortrait: {fileID: 0}
   CapacitySize: 1
   Damage: 2

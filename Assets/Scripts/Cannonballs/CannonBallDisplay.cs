@@ -10,22 +10,29 @@ public class CannonBallDisplay : MonoBehaviour
     public Text NameText, DescriptionText;
 
     public Image Portrait;
-    public SpriteRenderer SpriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRendererComp;
     public int CapacitySize, Damage, AreaOfEffect, RecoveryTime;
 
     void Start()
     {
-        if(Cb != null)
-        {
-            Debug.Log(Cb.Name);
-            // nameText.text = cb.name;
-            // descriptionText.text = cb.description;
-            // portrait = cb.artwork;
-            SpriteRenderer.sprite = Cb.Sprite;
-            CapacitySize = Cb.CapacitySize;
-            Damage = Cb.Damage;
-            AreaOfEffect = Cb.AreaOfEffect;
-            RecoveryTime = Cb.RecoveryTime;
-        }
+        _spriteRendererComp = gameObject.GetComponent<SpriteRenderer>();
+        // if(Cb != null)
+        // {
+        //     SetUpDisplay();
+        // }
+    }
+    
+    public void SetUpDisplay()
+    {
+        // Debug.Log(Cb.CannonBallName);
+        // nameText.text = cb.name;
+        // descriptionText.text = cb.description;
+        // portrait = cb.artwork;
+        _spriteRendererComp = gameObject.GetComponent<SpriteRenderer>();
+        _spriteRendererComp.sprite = Cb.LevelSprite;
+        CapacitySize = Cb.CapacitySize;
+        Damage = Cb.Damage;
+        AreaOfEffect = Cb.AreaOfEffect;
+        RecoveryTime = Cb.RecoveryTime;
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New CannonBall", menuName = "CannonBall")]
 public class CannonBall : ScriptableObject
 {
-    public string Name, Description,TypeID;
-    public Sprite Sprite;
+    public string CannonBallName, Description,TypeID;
+    public Sprite LevelSprite;
     public Image HelpPortrait;
     public int CapacitySize, Damage, AreaOfEffect, RecoveryTime;
 }
