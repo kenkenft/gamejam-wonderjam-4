@@ -15,13 +15,16 @@ public class CannonBallLoadingManager : MonoBehaviour
     
     void Start()
     {
-        SetUp();
+        SetUpLoadingPhase();
     }
-    public void SetUp()
+    public void SetUpLoadingPhase()
     {
         SetUpCannonBallPool();
         //Set up CannonBallPoolManager;
         ReplenishSelectableCannonBalls();
+
+        SetZonesSelectableState(true);
+
     }
 
     void SetUpCannonBallPool()
@@ -79,6 +82,14 @@ public class CannonBallLoadingManager : MonoBehaviour
         SelectableCannonBallZones[zoneID].GetComponent<TileProperties>().SetIsOccupied(true);
 
         CannonBallObjectPool[zoneID].transform.position = SelectableCannonBallZones[zoneID].transform.position;
+    }
+
+    public void SetZonesSelectableState(bool state)
+    {
+        for(int i = 0 ; i < SelectableCannonBallZones.Length; i++)
+        {
+            SelectableCannonBallZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
+        }
     }
 
 }
