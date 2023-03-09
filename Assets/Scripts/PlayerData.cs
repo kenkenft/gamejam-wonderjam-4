@@ -8,12 +8,12 @@ public class PlayerData : ScriptableObject
     // private int[] _cannonBallPoolSmall = new int[8], _cannonBallPoolMedium = new int[6], 
     //                     _cannonBallPoolLarge = new int[4], _cannonBallPoolXLarge = new int[2];  // Array values represent the CannonBall type's id
 
-    private Dictionary<string, int[]> _poolDictionary = new Dictionary<string, int[]>()
+    private Dictionary<string, string[]> _poolDictionary = new Dictionary<string, string[]>()
                                                                                         {
-                                                                                            {"small", new int[8]},
-                                                                                            {"medium", new int[6]},
-                                                                                            {"large", new int[4]},
-                                                                                            {"xlarge", new int[2]}
+                                                                                            {"s", new string[8]},
+                                                                                            {"m", new string[6]},
+                                                                                            {"l", new string[4]},
+                                                                                            {"x", new string[2]}
                                                                                         };
     private int _playerMoney, _playerScore;
 
@@ -24,16 +24,16 @@ public class PlayerData : ScriptableObject
         // SetPoolToDefault(_cannonBallPoolMedium);
         // SetPoolToDefault(_cannonBallPoolLarge);
         // SetPoolToDefault(_cannonBallPoolXLarge);
-        SetPoolToDefault(_poolDictionary["small"]);
-        SetPoolToDefault(_poolDictionary["medium"]);
-        SetPoolToDefault(_poolDictionary["large"]);
-        SetPoolToDefault(_poolDictionary["xlarge"]);
+        SetPoolToDefault(_poolDictionary["s"], "s");
+        SetPoolToDefault(_poolDictionary["m"], "m");
+        SetPoolToDefault(_poolDictionary["l"], "l");
+        SetPoolToDefault(_poolDictionary["x"], "x");
     }
 
-    void SetPoolToDefault(int[] pool)
+    void SetPoolToDefault(string[] pool, string typePrefix)
     {
         for(int i = 0; i < pool.Length; i++)
-            pool[i] = 0;
+            pool[i] = typePrefix + 0.ToString();
     }
 
     public void SetPlayerMoney(int amount)
@@ -46,7 +46,7 @@ public class PlayerData : ScriptableObject
         return _playerMoney;
     }
 
-    public int[] GetCannonBallPool(string target)
+    public string[] GetCannonBallPool(string target)
     {
         return _poolDictionary[target];
         // switch(target)
@@ -66,7 +66,7 @@ public class PlayerData : ScriptableObject
 
     public void SetCannonBallPool(string target, int arrayIndex, int cannonBallTypeID)
     {
-        _poolDictionary[target][arrayIndex] = cannonBallTypeID;
+        _poolDictionary[target][arrayIndex] = target + cannonBallTypeID.ToString();
         //  switch(target)
         //  {
         //     case "small":

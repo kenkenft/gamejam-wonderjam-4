@@ -13,10 +13,10 @@ public class GameProperties : ScriptableObject
 
     private Dictionary<string, CannonBall[]> _cannonBallTypeDict = new Dictionary<string, CannonBall[]>()
                                                                                         {
-                                                                                            {"small", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Small")},
-                                                                                            {"medium", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Medium")},
-                                                                                            {"large", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Large")},
-                                                                                            {"xlarge", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/XLarge")}
+                                                                                            {"s", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Small")},
+                                                                                            {"m", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Medium")},
+                                                                                            {"l", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/Large")},
+                                                                                            {"x", Resources.LoadAll<CannonBall>("Assets/Scripts/Cannonballs/Resources/XLarge")}
                                                                                         };
     public CannonBall GetCannonBallType(string size, int typeID)
     {
