@@ -13,10 +13,6 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     
-    void Start()
-    {
-        SetUpLoadingPhase();
-    }
     public void SetUpLoadingPhase()
     {
         SetUpCannonBallPool();
@@ -36,28 +32,17 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     public void GetCannonBallPool(string targetPool)
     {
-        // Debug.Log("GetCannonBallPool called. Fetching " + targetPool + " pool");
-        // ToDo From player property file, fetch player's current CannonBallPool configuration
         string[] tempArray = PlayerDataInstance.GetCannonBallPool(targetPool);
         for(int i = 0; i < tempArray.Length; i++)
             _cannonBallPool.Add(tempArray[i]);
-
-        // Debug.Log("Retrieved " + tempArray.Length + " items");
     }
 
     public void ReplenishSelectableCannonBalls()
     {
-        // List<int> emptyZonesList = GetEmptyZonesID(); 
-        Debug.Log("ReplenishSelectableCannonBalls called");
         for(int i = 0; i < SelectableCannonBallZones.Length; i++)
         {
             if(!SelectableCannonBallZones[i].GetComponent<TileProperties>().GetIsOccupied())
-            {
-                //ToDo method to select CannonBall from CannonBallPool
-                //ToDo create CannonBallPoolManager
-                // Debug.Log("Empty zone detected. Zone: " + i + ". Selected cannonball type ID: " + GetFromPool());
                 SetCannonBallData(i, GetFromPool());
-            }
         }
     }
 
@@ -65,15 +50,17 @@ public class CannonBallLoadingManager : MonoBehaviour
     {
         int rand;
         string selected;
+
         rand = UnityEngine.Random.Range(0,_cannonBallPool.Count-1);
         selected = _cannonBallPool[rand];
         _cannonBallPool.RemoveAt(rand);
+
         return selected;
     }
 
     void SetCannonBallData(int zoneID, string typeID)
     {
-        Debug.Log("Empty zone detected. Zone: " + zoneID + ". Selected cannonball type ID: " + typeID);
+        // Debug.Log("Empty zone detected. Zone: " + zoneID + ". Selected cannonball type ID: " + typeID);
         CannonBall cannonBallData = GamePropertiesInstance.GetCannonBallType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
         
         CannonBallObjectPool[zoneID].GetComponent<CannonBallDisplay>().Cb = cannonBallData;
@@ -87,9 +74,7 @@ public class CannonBallLoadingManager : MonoBehaviour
     public void SetZonesSelectableState(bool state)
     {
         for(int i = 0 ; i < SelectableCannonBallZones.Length; i++)
-        {
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
-        }
     }
 
 }
