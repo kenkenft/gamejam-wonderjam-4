@@ -7,6 +7,7 @@ public class TileProperties : MonoBehaviour
     [SerializeField] private bool _isOccupied, _isTargetable;
     [SerializeField] private int[] tileXY = new int[2]; // tile's column and row position on targetable grid. index 0 is column, index 1 is row
     [SerializeField] private GameObject _occupant;
+    [SerializeField] private CannonProperties _cannonProperties;
 
     public void SetUp()
     {
@@ -31,7 +32,15 @@ public class TileProperties : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Tile Clicked!");
+        if(_isTargetable)
+        {
+            Debug.Log("Tile is targetable");
+            CheckGameState();
+        }
+        else
+        {
+            Debug.Log("Tile is not targetable");
+        }
     }
 
     public bool GetIsOccupied()
@@ -52,5 +61,33 @@ public class TileProperties : MonoBehaviour
     public void RemoveOccupant()
     {
         _occupant = null;
+    }
+
+    public void SetCannonRef(CannonProperties cannonRef)
+    {
+        _cannonProperties = cannonRef;
+    }
+
+    void CheckGameState()
+    {
+        switch(CannonManager.GetGameState())
+        {
+            case 2:
+            {
+                Debug.Log("Tile clicked during state 2! Load this into cannon!");
+                _cannonProperties.LoadInToCannon(_occupant);
+                break;
+            }
+            case 3:
+            {
+                Debug.Log("Tile clicked during state 3! Targeting enemy!");
+                break;
+            }
+            default:
+            {
+                Debug.Log("Tile clicked during other states! That shouldn't be possible!");
+                break;
+            }
+        }
     }
 }

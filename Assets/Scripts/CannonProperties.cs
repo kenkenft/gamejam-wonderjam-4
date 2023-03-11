@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CannonProperties : MonoBehaviour
 {
-    private int _cannonPhase, _cannonMaxCapacity = 6, _cannonUsedCapacity = 0;
+    [SerializeField] private int _cannonMaxCapacity = 6, _cannonUsedCapacity = 0;
 
     private List<GameObject> loadedCannonBalls = new List<GameObject>{};
 
     public void LoadInToCannon(GameObject cannonBall)
     {
         int cannonBallCapacity = cannonBall.GetComponent<CannonBallDisplay>().CapacitySize;
-        if(_cannonUsedCapacity + cannonBallCapacity < _cannonMaxCapacity)
+        if(_cannonUsedCapacity + cannonBallCapacity <= _cannonMaxCapacity)
         {    
             loadedCannonBalls.Add(cannonBall);
             _cannonUsedCapacity += cannonBallCapacity;
@@ -43,7 +43,6 @@ public class CannonProperties : MonoBehaviour
             // ToDo Set up function that modify UI button state
         }
 
-        
     }
     
 }

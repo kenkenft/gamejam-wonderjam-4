@@ -11,6 +11,7 @@ public class CannonBallLoadingManager : MonoBehaviour
     public PlayerData PlayerDataInstance;
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
+    public CannonProperties CannonInstance;
     
     private void OnEnable()
     {
@@ -82,6 +83,12 @@ public class CannonBallLoadingManager : MonoBehaviour
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
     }
 
+    void SetZonesCannonReference()
+    {
+        for(int i = 0 ; i < SelectableCannonBallZones.Length; i++)
+            SelectableCannonBallZones[i].GetComponent<TileProperties>().SetCannonRef(CannonInstance);
+    }
+
     void CheckGameState(int gameState)
     {
         switch(gameState)
@@ -96,6 +103,7 @@ public class CannonBallLoadingManager : MonoBehaviour
             case 2:
             {
                 Debug.Log("gameState is 2! Calling SetZonesSelectableState(true)");
+                SetZonesCannonReference();
                 SetZonesSelectableState(true);
                 break;
             }
