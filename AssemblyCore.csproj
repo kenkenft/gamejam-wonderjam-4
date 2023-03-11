@@ -36,11 +36,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Core\GameProperties.cs" />
      <Compile Include="Assets\Scripts\Core\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Core\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Core\Cannonballs\CannonBallDisplay.cs" />
      <Compile Include="Assets\Scripts\Core\Cannonballs\CannonBall.cs" />
-     <Compile Include="Assets\Scripts\Core\PlayerData.cs" />
-     <Compile Include="Assets\Scripts\Core\GameProperties.cs" />
      <None Include="Assets\Scripts\Core\AssemblyCore.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

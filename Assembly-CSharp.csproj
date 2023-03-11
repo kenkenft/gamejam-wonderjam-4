@@ -38,8 +38,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CannonProperties.cs" />
      <Compile Include="Assets\Scripts\TileProperties.cs" />
-     <Compile Include="Assets\Scripts\CannonBallLoadingManager.cs" />
      <Compile Include="Assets\Scripts\CannonManager.cs" />
+     <Compile Include="Assets\Scripts\CannonBallLoadingManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -843,6 +843,10 @@
       <Project>{d0e03c98-c311-1754-620d-f1eac44d19f1}</Project>
       <Name>Unity.2D.Common.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="AssemblyCore.csproj">
+      <Project>{82b834ef-e1c2-6f46-0a04-676057c262a5}</Project>
+      <Name>AssemblyCore</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">
       <Project>{167515c0-8c97-e16e-40a0-8a9d429f0811}</Project>
       <Name>Unity.2D.SpriteShape.Runtime</Name>
@@ -850,10 +854,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{d98109cf-7f39-d107-4889-d2d77c5fb10b}</Project>
       <Name>Unity.VisualScripting.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="AssemblyCore.csproj">
-      <Project>{82b834ef-e1c2-6f46-0a04-676057c262a5}</Project>
-      <Name>AssemblyCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
