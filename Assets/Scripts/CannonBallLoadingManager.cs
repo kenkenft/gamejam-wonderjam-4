@@ -9,7 +9,6 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     private List<string> _cannonBallPool = new List<string>{};
     public PlayerData PlayerDataInstance;
-    // public GameProperties GamePropertiesInstance;
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     
@@ -25,11 +24,8 @@ public class CannonBallLoadingManager : MonoBehaviour
     public void SetUpLoadingPhase()
     {
         SetUpCannonBallPool();
-        //Set up CannonBallPoolManager;
+        //ToDo Set up CannonBallPoolManager;
         ReplenishSelectableCannonBalls();
-
-        // SetZonesSelectableState(true);
-        // Method that sets CannonManager._gameState to 2.
     }
 
     void SetUpCannonBallPool()
@@ -94,6 +90,7 @@ public class CannonBallLoadingManager : MonoBehaviour
             {
                 Debug.Log("gameState is 1! Calling SetUpLoadingPhase");
                 SetUpLoadingPhase();
+                CannonManager.SetGameState(2);
                 break;
             }
             case 2:
