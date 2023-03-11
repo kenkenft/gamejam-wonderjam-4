@@ -13,14 +13,23 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     
+    private void OnEnable()
+    {
+        CannonManager.OnGameStateChange += CheckGameState;
+    }
+
+    private void OnDisable()
+    {
+        CannonManager.OnGameStateChange -= CheckGameState;
+    }
     public void SetUpLoadingPhase()
     {
         SetUpCannonBallPool();
         //Set up CannonBallPoolManager;
         ReplenishSelectableCannonBalls();
 
-        SetZonesSelectableState(true);
-
+        // SetZonesSelectableState(true);
+        // Method that sets CannonManager._gameState to 2.
     }
 
     void SetUpCannonBallPool()
@@ -77,4 +86,33 @@ public class CannonBallLoadingManager : MonoBehaviour
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
     }
 
+    void CheckGameState(int gameState)
+    {
+        switch(gameState)
+        {
+            case 1:
+            {
+                Debug.Log("gameState is 1! Calling SetUpLoadingPhase");
+                SetUpLoadingPhase();
+                break;
+            }
+            case 2:
+            {
+                Debug.Log("gameState is 2! Calling SetZonesSelectableState(true)");
+                SetZonesSelectableState(true);
+                break;
+            }
+            case 3:
+            {
+                Debug.Log("gameState is 3! Calling SetZonesSelectableState(false)" );
+                SetZonesSelectableState(false);
+                break;
+            }
+            default:
+            {
+                Debug.Log("gameState is " + gameState + ". CannonBallLoadingManager doesn't do anything");
+                break;
+            }
+        }
+    }
 }
