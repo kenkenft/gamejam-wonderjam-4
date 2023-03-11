@@ -161,6 +161,7 @@ MonoBehaviour:
   _isTargetable: 0
   tileXY: 0000000000000000
   _occupant: {fileID: 0}
+  _cannonProperties: {fileID: 0}
 --- !u!1 &5619379592989819611
 GameObject:
   m_ObjectHideFlags: 0
