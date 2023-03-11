@@ -9,7 +9,7 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     private List<string> _cannonBallPool = new List<string>{};
     public PlayerData PlayerDataInstance;
-    public GameProperties GamePropertiesInstance;
+    // public GameProperties GamePropertiesInstance;
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     
@@ -61,7 +61,7 @@ public class CannonBallLoadingManager : MonoBehaviour
     void SetCannonBallData(int zoneID, string typeID)
     {
         // Debug.Log("Empty zone detected. Zone: " + zoneID + ". Selected cannonball type ID: " + typeID);
-        CannonBall cannonBallData = GamePropertiesInstance.GetCannonBallType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
+        CannonBall cannonBallData = GameProperties.GetCannonBallType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
         
         CannonBallObjectPool[zoneID].GetComponent<CannonBallDisplay>().Cb = cannonBallData;
         CannonBallObjectPool[zoneID].GetComponent<CannonBallDisplay>().SetUpDisplay();
