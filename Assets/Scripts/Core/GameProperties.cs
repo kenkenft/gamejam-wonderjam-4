@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameProperties
 {
-    public static Dictionary<string, CannonBall[]> CannonBallTypeDict = new Dictionary<string, CannonBall[]>()
+    private static Dictionary<string, CannonBall[]> CannonBallTypeDict = new Dictionary<string, CannonBall[]>()
                                                                                                                 {
                                                                                                                     {"s", Resources.LoadAll<CannonBall>("Small")},
                                                                                                                     {"m", Resources.LoadAll<CannonBall>("Medium")},
