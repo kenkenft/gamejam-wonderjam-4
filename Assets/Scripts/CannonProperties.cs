@@ -8,6 +8,9 @@ public class CannonProperties : MonoBehaviour
 
     private List<GameObject> loadedCannonBalls = new List<GameObject>{};
 
+    [HideInInspector]public delegate void OnCheckAimingDelegate(bool state);
+    [HideInInspector]public static OnCheckAimingDelegate OnCheck;
+
     public void LoadInToCannon(GameObject cannonBall)
     {
         int cannonBallCapacity = cannonBall.GetComponent<CannonBallDisplay>().CapacitySize;
@@ -36,11 +39,13 @@ public class CannonProperties : MonoBehaviour
         {
             Debug.Log("Ammo detected! Enabling Aiming Button");
             // ToDo Set up function that modify UI button state
+            OnCheck?.Invoke(true);
         }
         else
         {
             Debug.Log("No Ammo detected! Disabling Aiming Button");
             // ToDo Set up function that modify UI button state
+            OnCheck?.Invoke(false);
         }
 
     }

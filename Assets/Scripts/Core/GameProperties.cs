@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameProperties
 {
-    private static Dictionary<string, CannonBall[]> CannonBallTypeDict = new Dictionary<string, CannonBall[]>()
+    private static Dictionary<string, CannonBall[]> _cannonBallTypeDict = new Dictionary<string, CannonBall[]>()
                                                                                                                 {
                                                                                                                     {"s", Resources.LoadAll<CannonBall>("Small")},
                                                                                                                     {"m", Resources.LoadAll<CannonBall>("Medium")},
@@ -12,8 +12,35 @@ public class GameProperties
                                                                                                                     {"x", Resources.LoadAll<CannonBall>("XLarge")}
                                                                                                                 };
     
+    private static Dictionary<string, Sprite[]> _phaseSpritesDict = new Dictionary<string, Sprite[]>()
+                                                                                                    {
+                                                                                                        {"loading", Resources.LoadAll<Sprite>("PhaseLoading")},
+                                                                                                        {"aiming", Resources.LoadAll<Sprite>("PhaseAiming")},
+                                                                                                        {"firing", Resources.LoadAll<Sprite>("PhaseFiring")}
+                                                                                                    };
+
+    private static Dictionary<string, int> _phaseNameIDsDict = new Dictionary<string, int>()// 0 is on Title Screen; 1 is start or initial setup; 2 is replenishment; 3 is loading; 4 is aiming; 5 is firing; 6 is update cannonballs and enemies; 
+                                                                                        {
+                                                                                            {"title", 0},
+                                                                                            {"setup", 1},
+                                                                                            {"replenishment", 2},
+                                                                                            {"loading", 3},
+                                                                                            {"aiming", 4},
+                                                                                            {"firing", 5},
+                                                                                            {"enemy", 6}
+                                                                                        };
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
     {
-        return CannonBallTypeDict[size][typeIDNum];
+        return _cannonBallTypeDict[size][typeIDNum];
+    }
+
+    public static Sprite GetPhaseSprite(string phaseName, int spriteID)
+    {
+        return _phaseSpritesDict[phaseName][spriteID];
+    }
+
+    public static int GetPhaseID(string phaseName)
+    {
+        return _phaseNameIDsDict[phaseName];
     }
 }

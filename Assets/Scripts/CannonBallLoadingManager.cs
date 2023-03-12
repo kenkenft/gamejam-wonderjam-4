@@ -91,25 +91,26 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     void CheckGameState(int gameState)
     {
+    
         switch(gameState)
         {
-            case 1:
-            {
-                Debug.Log("gameState is 1! Calling SetUpLoadingPhase");
-                SetUpLoadingPhase();
-                CannonManager.SetGameState(2);
-                break;
-            }
             case 2:
             {
-                Debug.Log("gameState is 2! Calling SetZonesSelectableState(true)");
-                SetZonesCannonReference();
-                SetZonesSelectableState(true);
+                Debug.Log("gameState is 2! Calling SetUpLoadingPhase");
+                SetUpLoadingPhase();
+                CannonManager.SetGameState(GameProperties.GetPhaseID("loading"));
                 break;
             }
             case 3:
             {
-                Debug.Log("gameState is 3! Calling SetZonesSelectableState(false)" );
+                Debug.Log("gameState is 3! Calling SetZonesSelectableState(true)");
+                SetZonesCannonReference();
+                SetZonesSelectableState(true);
+                break;
+            }
+            case 4:
+            {
+                Debug.Log("gameState is 4! Calling SetZonesSelectableState(false)" );
                 SetZonesSelectableState(false);
                 break;
             }

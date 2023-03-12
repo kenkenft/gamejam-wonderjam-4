@@ -72,15 +72,15 @@ public class TileProperties : MonoBehaviour
     {
         switch(CannonManager.GetGameState())
         {
-            case 2:
+            case 3:
             {
-                Debug.Log("Tile clicked during state 2! Load this into cannon!");
+                Debug.Log("Tile clicked during loading phase! Load this into cannon!");
                 _cannonProperties.LoadInToCannon(_occupant);
                 break;
             }
-            case 3:
+            case 4:
             {
-                Debug.Log("Tile clicked during state 3! Targeting enemy!");
+                Debug.Log("Tile clicked during aiming phase! Targeting enemy!");
                 break;
             }
             default:

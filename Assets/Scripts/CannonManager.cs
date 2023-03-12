@@ -13,7 +13,7 @@ public class CannonManager : MonoBehaviour
 
     void Start()
     {
-        SetGameState(1);
+        SetGameState(2);
     }
 
     public static void SetGameState(int state)
