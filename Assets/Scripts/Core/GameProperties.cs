@@ -12,11 +12,11 @@ public class GameProperties
                                                                                                                     {"x", Resources.LoadAll<CannonBall>("XLarge")}
                                                                                                                 };
     
-    private static Dictionary<string, Sprite[]> _phaseSpritesDict = new Dictionary<string, Sprite[]>()
+    private static Dictionary<int, Sprite[]> _phaseSpritesDict = new Dictionary<int, Sprite[]>()
                                                                                                     {
-                                                                                                        {"loading", Resources.LoadAll<Sprite>("PhaseLoading")},
-                                                                                                        {"aiming", Resources.LoadAll<Sprite>("PhaseAiming")},
-                                                                                                        {"firing", Resources.LoadAll<Sprite>("PhaseFiring")}
+                                                                                                        {0, Resources.LoadAll<Sprite>("PhaseLoading")}, //"loading"
+                                                                                                        {1, Resources.LoadAll<Sprite>("PhaseAiming")},   //"aiming"
+                                                                                                        {2, Resources.LoadAll<Sprite>("PhaseFiring")}    //"firing"
                                                                                                     };
 
     private static Dictionary<string, int> _phaseNameIDsDict = new Dictionary<string, int>()// 0 is on Title Screen; 1 is start or initial setup; 2 is replenishment; 3 is loading; 4 is aiming; 5 is firing; 6 is update cannonballs and enemies; 
@@ -34,9 +34,9 @@ public class GameProperties
         return _cannonBallTypeDict[size][typeIDNum];
     }
 
-    public static Sprite GetPhaseSprite(string phaseName, int spriteID)
+    public static Sprite GetPhaseSprite(int phaseNameID, int spriteID)
     {
-        return _phaseSpritesDict[phaseName][spriteID];
+        return _phaseSpritesDict[phaseNameID][spriteID];
     }
 
     public static int GetPhaseID(string phaseName)

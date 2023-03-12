@@ -311,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 500563859}
   - component: {fileID: 500563860}
+  - component: {fileID: 500563861}
   m_Layer: 0
   m_Name: AimingButton
   m_TagString: Untagged
@@ -385,6 +386,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &500563861
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500563858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 2}
+    newSize: {x: 1.28, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409458469}
   - component: {fileID: 1409458470}
+  - component: {fileID: 1409458471}
   m_Layer: 0
   m_Name: FiringButton
   m_TagString: Untagged
@@ -953,6 +981,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1409458471
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409458468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 2}
+    newSize: {x: 4, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2}
+  m_EdgeRadius: 0
 --- !u!4 &1420406758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5032536872946540771, guid: 2cdda0009066285478484f1c467c451b, type: 3}
@@ -1095,11 +1149,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75e43819c6c5994881bd55c3ea372ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseButtonsArray:
+  PhaseButtonsArray:
   - {fileID: 2139000060}
   - {fileID: 500563858}
   - {fileID: 1409458468}
-  phaseButtonsSpriteRenderer:
+  _phaseButtonsSpriteRendererArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _phaseButtonsColliderArray:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1113,6 +1171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139000061}
   - component: {fileID: 2139000062}
+  - component: {fileID: 2139000063}
   m_Layer: 0
   m_Name: LoadingButton
   m_TagString: Untagged
@@ -1187,6 +1246,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2139000063
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139000060}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 2}
+    newSize: {x: 1.28, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2}
+  m_EdgeRadius: 0
 --- !u!1001 &346816656272647425
 PrefabInstance:
   m_ObjectHideFlags: 0
