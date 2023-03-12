@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 500563859}
   - component: {fileID: 500563860}
   - component: {fileID: 500563861}
+  - component: {fileID: 500563862}
   m_Layer: 0
   m_Name: AimingButton
   m_TagString: Untagged
@@ -412,6 +413,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &500563862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500563858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece3c2303cd99d5419fe3b6fecb6cfa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetState: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +921,7 @@ GameObject:
   - component: {fileID: 1409458469}
   - component: {fileID: 1409458470}
   - component: {fileID: 1409458471}
+  - component: {fileID: 1409458472}
   m_Layer: 0
   m_Name: FiringButton
   m_TagString: Untagged
@@ -1007,6 +1022,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &1409458472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409458468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece3c2303cd99d5419fe3b6fecb6cfa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetState: 5
 --- !u!4 &1420406758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5032536872946540771, guid: 2cdda0009066285478484f1c467c451b, type: 3}
@@ -1172,6 +1200,7 @@ GameObject:
   - component: {fileID: 2139000061}
   - component: {fileID: 2139000062}
   - component: {fileID: 2139000063}
+  - component: {fileID: 2139000064}
   m_Layer: 0
   m_Name: LoadingButton
   m_TagString: Untagged
@@ -1272,6 +1301,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &2139000064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139000060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece3c2303cd99d5419fe3b6fecb6cfa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetState: 3
 --- !u!1001 &346816656272647425
 PrefabInstance:
   m_ObjectHideFlags: 0
