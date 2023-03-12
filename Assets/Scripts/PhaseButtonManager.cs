@@ -45,6 +45,7 @@ public class PhaseButtonManager : MonoBehaviour
             case 3:
             {
                 Debug.Log("gameState is 3! Setting up buttons for Loading Phase");
+                
                 SetButtonPhaseStates(_buttonStateCombinArray[0]);
                 break;
             }
@@ -83,6 +84,6 @@ public class PhaseButtonManager : MonoBehaviour
         if(state)
             SetButtonPhaseStates(_buttonStateCombinArray[4]);
         else
-            SetButtonPhaseStates(_buttonStateCombinArray[3]);
+            SetButtonPhaseStates(_buttonStateCombinArray[0]);
     }
 }

@@ -11,6 +11,14 @@ public class CannonManager : MonoBehaviour
     [HideInInspector]public delegate void OnChangeDelegate(int value);
     [HideInInspector]public static OnChangeDelegate OnGameStateChange;
 
+    void OnEnable()
+    {
+        PhaseButtonClick.SetGameState += SetGameState;
+    }
+    void OnDiable()
+    {
+        PhaseButtonClick.SetGameState -= SetGameState;
+    }
     void Start()
     {
         SetGameState(2);

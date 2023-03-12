@@ -5,9 +5,12 @@ using UnityEngine;
 public class PhaseButtonClick : MonoBehaviour
 {
     public int TargetState;
+
+    [HideInInspector]public delegate void OnButtonClick(int value);
+    [HideInInspector]public static OnButtonClick SetGameState;
     
     void OnMouseDown()
     {
-        Debug.Log("Phase Button clicked! TargetState: " + TargetState);
+        SetGameState?.Invoke(TargetState);
     }
 }
