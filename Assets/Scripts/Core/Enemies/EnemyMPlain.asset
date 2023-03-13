@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d16a152b3ea970418a94e9f95754ecf, type: 3}
   m_Name: EnemyMPlain
   m_EditorClassIdentifier: 
-  name: Reg. Cuboidian
-  description: The average Cuboidian
-  artwork: {fileID: 0}
-  capacitySize: 2
-  health: 4
-  damage: 3
-  travelDistance: 1
-  travelFrequency: 2
-  isImmuneToOneHit: 0
+  Name: Reg. Cuboidian
+  Description: The average Cuboidian
+  Artwork: {fileID: 21300000, guid: d4364b9d3daa3124cb708a328af331e8, type: 3}
+  CapacitySize: 2
+  Health: 4
+  Damage: 3
+  TravelDistance: 1
+  TravelFrequency: 2
+  IsImmuneToOneHit: 0
