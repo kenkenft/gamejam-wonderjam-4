@@ -124,6 +124,62 @@ public class EnemyTileManager : MonoBehaviour
         }
     }
 
+    void EnemiesBehaviour()
+    {
+        int[] tempArray = new int[] {GameProperties.GetEnemyGridDimensions()[0], GameProperties.GetEnemyGridDimensions()[1]};
+        int x = tempArray[0] > tempArray[1] ? tempArray[0] : tempArray[1];
+        int[] targetData = {0, 0, 0, x};
+        int[] searchGridCorners = SetUpGridSearchBoundaries(targetData);
+
+        List<GameObject> occupiedTiles = FindOccupiedTiles(searchGridCorners);
+
+        int occupied = occupiedTiles.Count; 
+
+        if(occupied > 0)
+        {
+            EnemyDisplay tempEnemyDisplay;
+            for(int i = 0; i < occupied; i++)
+            {
+                tempEnemyDisplay = occupiedTiles[i].GetComponentInChildren<EnemyDisplay>();
+                bool canTravel = CheckOccupantTravelCounter(tempEnemyDisplay);
+                if(canTravel)
+                {
+                    TileProperties tempTileProperties = occupiedTiles[i].GetComponent<TileProperties>();
+                    tempArray = tempTileProperties.GetTileCoordinates();
+                    x = tempEnemyDisplay.TravelDistance;
+                    TileProperties newTargetTile = EnemyTileDict[tempArray[1] + x ][ tempArray[0]].GetComponent<TileProperties>();
+                    if(!newTargetTile.GetIsOccupied())
+                    {
+                        GameObject enemyObject = tempTileProperties.GetOccupant();
+                        //Set is occupied to true, set enemy position to new tile's position, set enemy as new tile occupant,
+                        //Remove enemy from old tile, set old tile isoccupied to false
+                        newTargetTile.SetIsOccupied(true);
+                        newTargetTile.SetOccupant(enemyObject);
+                        enemyObject.transform.position = newTargetTile.transform.position;
+                        enemyObject.transform.parent = newTargetTile.transform;
+
+                        tempTileProperties.SetIsOccupied(false);
+                        tempTileProperties.RemoveOccupant();
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    bool CheckOccupantTravelCounter(EnemyDisplay tempEnemyDisplay)
+    {
+        if(tempEnemyDisplay.TravelCounter > 0)
+        {
+            tempEnemyDisplay.TravelCounter--;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     void CheckGameState(int gameState)
     {
     
@@ -142,6 +198,12 @@ public class EnemyTileManager : MonoBehaviour
             {
                 Debug.Log("EnemyTileManager.Case4");
                 SetEnemyTileIsTargetable(true);
+                break;
+            }
+            case 6:
+            {
+                Debug.Log("EnemyTileManager.Case6");
+                EnemiesBehaviour();
                 break;
             }
             default:

@@ -11,7 +11,7 @@ public class EnemyDisplay : MonoBehaviour
 
     public Image Portrait;
     [SerializeField] private SpriteRenderer _spriteRendererComp;
-    public int CapacitySize, Health, Damage, TravelDistance, TravelFrequency, IsImmuneToOneHit;
+    public int CapacitySize, Health, Damage, TravelDistance, TravelFrequency, IsImmuneToOneHit, TravelCounter;
 
     void Start()
     {
@@ -49,5 +49,10 @@ public class EnemyDisplay : MonoBehaviour
             // ToDo remove enemy from grid
         }
         return false;
+    }
+
+    public void ResetTravelCounter(int value)
+    {
+        TravelCounter = TravelFrequency;
     }
 }
