@@ -29,6 +29,12 @@ public class GameProperties
                                                                                             {"firing", 5},
                                                                                             {"enemy", 6}
                                                                                         };
+    
+    private static Dictionary<int, string[]> _enemySpawnPools = new Dictionary<int, string[]>()
+                                                                                                                {
+                                                                                                                    {0, new [] {"s0", "s0", "m0", "m0", "l0", "l0"}}
+                                                                                                                };
+    
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
     {
         return _cannonBallTypeDict[size][typeIDNum];
@@ -42,5 +48,10 @@ public class GameProperties
     public static int GetPhaseID(string phaseName)
     {
         return _phaseNameIDsDict[phaseName];
+    }
+
+    public static string[] GetEnemyStageSpawnPool(int stageID)
+    {
+        return _enemySpawnPools[stageID];
     }
 }
