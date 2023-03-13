@@ -34,7 +34,7 @@ public class CannonProperties : MonoBehaviour
         {    
             _loadedCannonBalls.Add(cannonBallZone);
             cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.position = _loadedCannonBallArea.transform.position;
-            cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.parent = _loadedCannonBallArea.transform;
+            // cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.parent = _loadedCannonBallArea.transform;
             _cannonUsedCapacity += cannonBallCapacity;
         }
         else
@@ -123,15 +123,11 @@ public class CannonProperties : MonoBehaviour
                                     {
                                         targetTile.GetComponent<TileProperties>().GetTileCoordinates()[0], //Tile Column/x coordinate
                                         targetTile.GetComponent<TileProperties>().GetTileCoordinates()[1], //Tile Row/y coordinate
-                                        cannonBall.GetComponent<CannonBallDisplay>().Damage,
-                                        cannonBall.GetComponent<CannonBallDisplay>().AreaOfEffect
+                                        cannonBall.GetComponentInChildren<CannonBallDisplay>().Damage,
+                                        cannonBall.GetComponentInChildren<CannonBallDisplay>().AreaOfEffect
                                     };
 
         CheckHitAnything?.Invoke(targetData);
-        // int[] targetTileCoord = targetTile.GetComponent<TileProperties>().GetTileCoordinates();
-        // int blastRadius = cannonBall.GetComponent<CannonBallDisplay>().AreaOfEffect;
-    // Instead, create a delegate that passes the cannonball damange and blast radius to EnemyTileManager
-    // Then have EnemyTileManager find the occupied tiles and damage stuff
 
     }
 
@@ -153,7 +149,7 @@ public class CannonProperties : MonoBehaviour
             {
                 Debug.Log("gameState is 5! Firing at targets!");
                 FireAtTargets();
-                CannonManager.SetGameState(2);  // Change to Enemy phase once that's set up
+                CannonManager.SetGameState(3);  // Change to Enemy phase once that's set up
                 break;
             }
             default:

@@ -79,9 +79,9 @@ public class EnemyTileManager : MonoBehaviour
         // Assumes targetData = {target tile's column/x coordinate, target tile's row/y coordinate, cannonball damage, cannonball area of effect}
         int[] searchGridCorners = SetUpGridSearchBoundaries(targetData);
 
-        for(int row = searchGridCorners[0]; row < searchGridCorners[1]; row++)
+        for(int row = searchGridCorners[0]; row <= searchGridCorners[1]; row++)
         {
-            for(int col = searchGridCorners[2]; col < searchGridCorners[3]; col++)
+            for(int col = searchGridCorners[2]; col <= searchGridCorners[3]; col++)
             {
                 if(EnemyTileDict[row][col].GetComponent<TileProperties>().GetIsOccupied())
                 {
