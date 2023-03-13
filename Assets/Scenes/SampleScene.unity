@@ -132,8 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 67154104}
-  - component: {fileID: 67154106}
-  - component: {fileID: 67154105}
   m_Layer: 0
   m_Name: LoadedCannonBallArea
   m_TagString: Untagged
@@ -161,42 +159,6 @@ RectTransform:
   m_AnchoredPosition: {x: 7.5, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &67154105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67154103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 2, y: 2}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 1
---- !u!156049354 &67154106
-Grid:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67154103}
-  m_Enabled: 1
-  m_CellSize: {x: 2, y: 2, z: 1}
-  m_CellGap: {x: 0.5, y: 0.5, z: 0}
-  m_CellLayout: 0
-  m_CellSwizzle: 0
 --- !u!1 &68192959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4685725439484102285, guid: 88134e701b8277d46923b134dfdbc038, type: 3}
