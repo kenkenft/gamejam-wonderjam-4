@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
-    private int _spawnTimer = 4;
+    private int _spawnTimer = 0;
     
     private void OnEnable()
     {
@@ -45,37 +45,52 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    void SpawnEnemies(int amount)
+    void  SpawnEnemies(int amount)
     {
         int tempInt = Mathf.Clamp(amount, 0, _enemySpawnPool.Count);
+        GameObject tempGameObject;
         //Process which sets up the Enemy object
+        for(int i = 0; i< tempInt; i++)
+        {
+            tempGameObject = GetPooledPrefab();
+            SetUpEnemy(tempGameObject);
+        }
+
     }
 
     void SpawnMoreEnemies()
     {
-        if(IsTimeToSpawn())
+        if(IsSpawnSpaceAvailable())
+        {
             SpawnEnemies(2);
+            _spawnTimer = 4;
+        }
+        else
+            Mathf.Clamp(_spawnTimer--, 0, 999);
     }
 
     bool IsTimeToSpawn()
     {
         if(_spawnTimer <= 0)
-        {
-            _spawnTimer = 4;
             return true;
-        } 
         else
-        {
-            _spawnTimer--;
             return false;
-        }
     }
 
-    public void ReplenishSelectableCannonBalls()
+    bool IsSpawnSpaceAvailable()
+    {
+        for(int i = 0; i< EnemySpawnZones.Count; i++)
+        {
+            if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())
+                return true;
+        }
+        return false;
+    }
+    void SetUpEnemy(GameObject enemyObject)
     {
         for(int i = 0; i < EnemySpawnZones.Count; i++)
         {
-            if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())
+            if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())  //Only spawn enemy in a free spawn zone
                 SetEnemyData(i, GetFromPool());
         }
     }
@@ -113,8 +128,8 @@ public class EnemyManager : MonoBehaviour
         for(int i = 0; i < poolSize; i++)
         {
             tmpObj = Instantiate(EnemyPrefab);
-            tmpObj.name = "Connector" + i;
-            tmpObj.SetActive(false);   // Set connector spriterender to inactive to hide connector
+            tmpObj.name = "EnemyPrefab" + i;
+            tmpObj.SetActive(false);   // Set prefab spriterender to inactive to hide connector
             tmpObj.transform.parent = transform;
             EnemyPrefabPool.Add(tmpObj);
         }
@@ -146,7 +161,8 @@ public class EnemyManager : MonoBehaviour
             }
             case 3:
             {
-                SpawnMoreEnemies();
+                if(IsTimeToSpawn() && _enemySpawnPool.Count > 0)
+                    SpawnMoreEnemies();
                 break;
             }
             default:
