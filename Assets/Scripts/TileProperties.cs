@@ -7,6 +7,7 @@ public class TileProperties : MonoBehaviour
     [SerializeField] private bool _isOccupied, _isTargetable, _isDesignated = false;
     [SerializeField] private int[] tileXY = new int[2]; // tile's column and row position on targetable grid. index 0 is column, index 1 is row
     [SerializeField] private GameObject _occupant;
+    [SerializeField] private SpriteRenderer _tileReticle;
     [SerializeField] private CannonProperties _cannonProperties;
 
     public void SetUp()
@@ -87,7 +88,10 @@ public class TileProperties : MonoBehaviour
                 Debug.Log("Tile clicked during aiming phase! Checking _isDesignated");
                 bool isTaskComplete = DesignateOrDelist();
                 if(isTaskComplete)
+                {    
                     _isDesignated = !_isDesignated;
+                    _tileReticle.enabled = _isDesignated;
+                }
 
                 break;
             }
