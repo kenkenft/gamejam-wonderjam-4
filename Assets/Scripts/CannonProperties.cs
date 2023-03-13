@@ -44,11 +44,25 @@ public class CannonProperties : MonoBehaviour
     public void DesignateTarget(GameObject target)
     {
         _selectedTargets.Add(target);
-        Debug.Log("Tile Added! Name: " + target.name);
+        Debug.Log("Tile designated target! Name: " + target.name);
     }
 
-    public void DelistTarget(int[] tileCoordinates)
+    public void DelistTarget(int[] targetTile)
     {
-
+        Debug.Log("Tile to be delisted!");
+        if(_selectedTargets.Count > 0)
+        {
+            int[] tempIntArray = new int[2];
+            for(int i = 0; i < _selectedTargets.Count ; i++)
+            {
+                tempIntArray = _selectedTargets[i].GetComponent<TileProperties>().GetTileCoordinates();
+                if(tempIntArray[0] == targetTile[0] && tempIntArray[1] == targetTile[1])
+                {    
+                    Debug.Log(_selectedTargets[i].name + " to be delisted!");
+                    _selectedTargets.RemoveAt(i);
+                    break;
+                }
+            }
+        }
     }
 }

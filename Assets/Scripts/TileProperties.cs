@@ -19,6 +19,10 @@ public class TileProperties : MonoBehaviour
         tileXY[0] = col;
         tileXY[1] = row;
     }
+    public int[] GetTileCoordinates()
+    {
+        return tileXY;
+    }
 
     public void SetIsOccupied(bool state)
     {
@@ -80,7 +84,7 @@ public class TileProperties : MonoBehaviour
             }
             case 4:
             {
-                Debug.Log("Tile clicked during aiming phase! Targeting Tile!");
+                Debug.Log("Tile clicked during aiming phase! Checking _isDesignated");
                 if(!_isDesignated)
                     _cannonProperties.DesignateTarget(this.gameObject);
                 else

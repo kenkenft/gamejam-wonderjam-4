@@ -180,6 +180,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
+      propertyPath: _isTargetable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
+      propertyPath: _cannonProperties
+      value: 
+      objectReference: {fileID: 333785713}
+    - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
       propertyPath: tileXY.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
@@ -244,6 +252,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
+      propertyPath: _isTargetable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
+      propertyPath: _cannonProperties
+      value: 
+      objectReference: {fileID: 333785713}
     - target: {fileID: 5032536872946540781, guid: 2cdda0009066285478484f1c467c451b, type: 3}
       propertyPath: tileXY.Array.data[0]
       value: 1
