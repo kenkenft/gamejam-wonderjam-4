@@ -6,13 +6,14 @@ public class EnemyManager : MonoBehaviour
 {
     public List<GameObject> EnemySpawnZones = new List<GameObject>();
 
-    private List<string> _enemySpawnPool = new List<string>{};
+    [SerializeField] private List<string> _enemySpawnPool = new List<string>{};
     // public PlayerData PlayerDataInstance;
 
     public List<GameObject> EnemyObjectPool = new List<GameObject>(){}, EnemyPrefabPool = new List<GameObject>(){};
 
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
+    public EnemyTileManager EnemyTileManagerInstance;
     private int _spawnTimer = 0;
     
     private void OnEnable()
@@ -26,18 +27,24 @@ public class EnemyManager : MonoBehaviour
     }
     public void SetUpEnemies()
     {
+        SetUpSpawnZones();
         SetUpEnemyPool();
         SpawnEnemies(4);
     }
 
-    void SetUpEnemyPool()
+    void SetUpSpawnZones()
     {
-        GetUpEnemyPool(0);
-        InstantiateEnemyPrefabs(_enemySpawnPool.Count);
-
+        for(int i = 0; i < EnemyTileManagerInstance.EnemyTileDict[0].Count; i++)
+            EnemySpawnZones.Add(EnemyTileManagerInstance.EnemyTileDict[0][i]);
     }
 
-    void GetUpEnemyPool(int stageID)
+    void SetUpEnemyPool()
+    {
+        GetEnemyPool(0);
+        InstantiateEnemyPrefabs(_enemySpawnPool.Count);
+    }
+
+    void GetEnemyPool(int stageID)
     {
         string[] tempArray = GameProperties.GetEnemyStageSpawnPool(stageID);
         for(int i = 0; i < tempArray.Length; i++)
@@ -45,15 +52,13 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    void  SpawnEnemies(int amount)
+    void SpawnEnemies(int amount)
     {
         int tempInt = Mathf.Clamp(amount, 0, _enemySpawnPool.Count);
-        GameObject tempGameObject;
         //Process which sets up the Enemy object
         for(int i = 0; i< tempInt; i++)
         {
-            tempGameObject = GetPooledPrefab();
-            SetUpEnemy(tempGameObject);
+            SetUpEnemy();
         }
 
     }
@@ -86,12 +91,15 @@ public class EnemyManager : MonoBehaviour
         }
         return false;
     }
-    void SetUpEnemy(GameObject enemyObject)
+    void SetUpEnemy()
     {
         for(int i = 0; i < EnemySpawnZones.Count; i++)
         {
             if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())  //Only spawn enemy in a free spawn zone
+            {
                 SetEnemyData(i, GetFromPool());
+                // SetEnemyData(i, GetFromPool());
+            }
         }
     }
 
@@ -111,14 +119,24 @@ public class EnemyManager : MonoBehaviour
     {
         // Debug.Log("Empty zone detected. Zone: " + zoneID + ". Selected cannonball type ID: " + typeID);
         Enemy enemyData = GameProperties.GetEnemyType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
-        
-        EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().EnemySO = enemyData;
-        EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().SetUpDisplay();
-        EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetOccupant(EnemyObjectPool[zoneID]);
+        GameObject tempGameObject = GetPooledPrefab();
+        tempGameObject.SetActive(true);
+
+        tempGameObject.GetComponent<EnemyDisplay>().EnemySO = enemyData;
+        tempGameObject.GetComponent<EnemyDisplay>().SetUpDisplay();
+        EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetOccupant(tempGameObject);
         EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetIsOccupied(true);
 
-        EnemyObjectPool[zoneID].transform.position = EnemySpawnZones[zoneID].transform.position;
-        EnemyObjectPool[zoneID].transform.parent = EnemySpawnZones[zoneID].transform;
+        tempGameObject.transform.position = EnemySpawnZones[zoneID].transform.position;
+        tempGameObject.transform.parent = EnemySpawnZones[zoneID].transform;
+
+        // EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().EnemySO = enemyData;
+        // EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().SetUpDisplay();
+        // EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetOccupant(EnemyObjectPool[zoneID]);
+        // EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetIsOccupied(true);
+
+        // EnemyObjectPool[zoneID].transform.position = EnemySpawnZones[zoneID].transform.position;
+        // EnemyObjectPool[zoneID].transform.parent = EnemySpawnZones[zoneID].transform;
     }
 
     public void InstantiateEnemyPrefabs(int poolSize)

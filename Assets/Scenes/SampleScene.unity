@@ -210,10 +210,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySpawnZones: []
+  _enemySpawnPool: []
   EnemyObjectPool: []
   EnemyPrefabPool: []
   EnemyPrefab: {fileID: 4570193921610193643, guid: f98c060465e1c0842a1e95a266adb136, type: 3}
   CannonInstance: {fileID: 0}
+  EnemyTileManagerInstance: {fileID: 177247782}
 --- !u!114 &177247782
 MonoBehaviour:
   m_ObjectHideFlags: 0

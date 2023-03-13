@@ -41,7 +41,7 @@ public class GameProperties
     
     private static Dictionary<int, string[]> _enemySpawnPools = new Dictionary<int, string[]>()
                                                                                                                 {
-                                                                                                                    {0, new [] {"s0", "s0", "m0", "m0", "l0", "l0"}}
+                                                                                                                    {0, new string[] {"s0", "s0", "m0", "m0", "l0", "l0"}}
                                                                                                                 };
     
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
@@ -51,6 +51,8 @@ public class GameProperties
 
     public static Enemy GetEnemyType(string size, int typeIDNum)
     {
+        Debug.Log("Enemy size: " + size  + ". typeIDNum: " + typeIDNum);
+        Debug.Log("Dictionary size: " + _enemyTypeDict.Count + ". Type array size: " + _enemyTypeDict[size].Length);
         return _enemyTypeDict[size][typeIDNum];
     }
 
