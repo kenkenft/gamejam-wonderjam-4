@@ -6,7 +6,7 @@ public class CannonProperties : MonoBehaviour
 {
     [SerializeField] private int _cannonMaxCapacity = 6, _cannonUsedCapacity = 0;
 
-    private List<GameObject> loadedCannonBalls = new List<GameObject>{};
+    [SerializeField] private List<GameObject> _loadedCannonBalls = new List<GameObject>{}, _selectedTargets = new List<GameObject>{};
 
     [HideInInspector]public delegate void OnCheckAimingDelegate(bool state);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
@@ -16,7 +16,7 @@ public class CannonProperties : MonoBehaviour
         int cannonBallCapacity = cannonBall.GetComponent<CannonBallDisplay>().CapacitySize;
         if(_cannonUsedCapacity + cannonBallCapacity <= _cannonMaxCapacity)
         {    
-            loadedCannonBalls.Add(cannonBall);
+            _loadedCannonBalls.Add(cannonBall);
             _cannonUsedCapacity += cannonBallCapacity;
         }
         else
@@ -28,26 +28,27 @@ public class CannonProperties : MonoBehaviour
     public void UnloadFromCannon()
     {
         // Removes most recently loaded cannonball and assoicated capacity usage
-        int lastIndex = loadedCannonBalls.Count-1;
-        _cannonUsedCapacity =- loadedCannonBalls[lastIndex].GetComponent<CannonBallDisplay>().CapacitySize;
-        loadedCannonBalls.RemoveAt(lastIndex);  
+        int lastIndex = _loadedCannonBalls.Count-1;
+        _cannonUsedCapacity =- _loadedCannonBalls[lastIndex].GetComponent<CannonBallDisplay>().CapacitySize;
+        _loadedCannonBalls.RemoveAt(lastIndex);  
     }
 
     public void CheckAimingPhaseCriteria()
     {
         if(_cannonUsedCapacity > 0)
-        {
-            Debug.Log("Ammo detected! Enabling Aiming Button");
-            // ToDo Set up function that modify UI button state
             OnCheck?.Invoke(true);
-        }
         else
-        {
-            Debug.Log("No Ammo detected! Disabling Aiming Button");
-            // ToDo Set up function that modify UI button state
             OnCheck?.Invoke(false);
-        }
-
     }
     
+    public void DesignateTarget(GameObject target)
+    {
+        _selectedTargets.Add(target);
+        Debug.Log("Tile Added! Name: " + target.name);
+    }
+
+    public void DelistTarget(int[] tileCoordinates)
+    {
+
+    }
 }

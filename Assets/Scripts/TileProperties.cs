@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileProperties : MonoBehaviour
 {
-    [SerializeField] private bool _isOccupied, _isTargetable;
+    [SerializeField] private bool _isOccupied, _isTargetable, _isDesignated = false;
     [SerializeField] private int[] tileXY = new int[2]; // tile's column and row position on targetable grid. index 0 is column, index 1 is row
     [SerializeField] private GameObject _occupant;
     [SerializeField] private CannonProperties _cannonProperties;
@@ -80,7 +80,14 @@ public class TileProperties : MonoBehaviour
             }
             case 4:
             {
-                Debug.Log("Tile clicked during aiming phase! Targeting enemy!");
+                Debug.Log("Tile clicked during aiming phase! Targeting Tile!");
+                if(!_isDesignated)
+                    _cannonProperties.DesignateTarget(this.gameObject);
+                else
+                    _cannonProperties.DelistTarget(tileXY);
+
+                _isDesignated = !_isDesignated;
+
                 break;
             }
             default:
