@@ -26,6 +26,7 @@ public class CannonBallLoadingManager : MonoBehaviour
     {
         SetUpCannonBallPool();
         //ToDo Set up CannonBallPoolManager;
+        //Return any and all loaded cannonballs to respective zones EmptyCannon() 
         ReplenishSelectableCannonBalls();
     }
 
@@ -41,6 +42,11 @@ public class CannonBallLoadingManager : MonoBehaviour
         string[] tempArray = PlayerDataInstance.GetCannonBallPool(targetPool);
         for(int i = 0; i < tempArray.Length; i++)
             _cannonBallPool.Add(tempArray[i]);
+    }
+
+    public void EmptyCannon()
+    {
+        //Does something to unload cannonballs?
     }
 
     public void ReplenishSelectableCannonBalls()
@@ -120,5 +126,5 @@ public class CannonBallLoadingManager : MonoBehaviour
                 break;
             }
         }
-    }
+    }   //End of CheckGameState
 }

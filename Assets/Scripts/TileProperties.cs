@@ -110,4 +110,10 @@ public class TileProperties : MonoBehaviour
         else
             return _cannonProperties.DelistTarget(tileXY);
     }
+
+    public void DeselectAndHideReticle()
+    {
+        _isDesignated = false;
+        _tileReticle.enabled = false;
+    }
 }

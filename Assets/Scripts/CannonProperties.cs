@@ -11,6 +11,16 @@ public class CannonProperties : MonoBehaviour
     [HideInInspector]public delegate void OnCheckAimingDelegate(int buttonState);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
 
+    private void OnEnable()
+    {
+        CannonManager.OnGameStateChange += CheckGameState;
+    }
+
+    private void OnDisable()
+    {
+        CannonManager.OnGameStateChange -= CheckGameState;
+    }
+
     public void LoadInToCannon(GameObject cannonBall)
     {
         int cannonBallCapacity = cannonBall.GetComponent<CannonBallDisplay>().CapacitySize;
@@ -82,4 +92,30 @@ public class CannonProperties : MonoBehaviour
         return false;
     }
 
+    void DeselectAllTargets()
+    {
+        for(int i = 0; i <_selectedTargets.Count; i++)
+        {
+            _selectedTargets[i].GetComponent<TileProperties>().DeselectAndHideReticle();
+        }
+    }
+
+    void CheckGameState(int gameState)
+    {
+    
+        switch(gameState)
+        {
+            case 3:
+            {
+                Debug.Log("gameState is 3! Deselecting all targets and emptying cannon");
+                DeselectAllTargets();
+                break;
+            }
+            default:
+            {
+                // Debug.Log("gameState is " + gameState + ". CannonBallLoadingManager doesn't do anything");
+                break;
+            }
+        }
+    }   //End of CheckGameState
 }
