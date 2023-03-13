@@ -10,6 +10,8 @@ public class CannonProperties : MonoBehaviour
 
     [HideInInspector]public delegate void OnCheckAimingDelegate(int buttonState);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
+    [HideInInspector]public delegate void OnEnterPhase(List<GameObject> list);
+    [HideInInspector]public static OnEnterPhase UnloadCannon;
 
     private void OnEnable()
     {
@@ -111,6 +113,7 @@ public class CannonProperties : MonoBehaviour
             {
                 Debug.Log("gameState is 3! Deselecting all targets and emptying cannon");
                 DeselectAllTargets();
+                UnloadCannon?.Invoke(_loadedCannonBalls);
                 break;
             }
             default:

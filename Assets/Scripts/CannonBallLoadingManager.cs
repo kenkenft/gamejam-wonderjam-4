@@ -16,11 +16,13 @@ public class CannonBallLoadingManager : MonoBehaviour
     private void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
+        CannonProperties.UnloadCannon += PlaceUnloadedCannonBallsInZones;
     }
 
     private void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
+        CannonProperties.UnloadCannon -= PlaceUnloadedCannonBallsInZones;
     }
     public void SetUpLoadingPhase()
     {
@@ -93,6 +95,11 @@ public class CannonBallLoadingManager : MonoBehaviour
     {
         for(int i = 0 ; i < SelectableCannonBallZones.Length; i++)
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetCannonRef(CannonInstance);
+    }
+
+    void PlaceUnloadedCannonBallsInZones(List<GameObject> unloadedCannonBalls)
+    {
+        Debug.Log("Cannonballs to be unloaded: " + unloadedCannonBalls.Count);
     }
 
     void CheckGameState(int gameState)
