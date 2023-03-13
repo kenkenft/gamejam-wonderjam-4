@@ -43,6 +43,7 @@
      <Compile Include="Assets\Scripts\PhaseButtonManager.cs" />
      <Compile Include="Assets\Scripts\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\PhaseButtonClick.cs" />
+     <Compile Include="Assets\Scripts\EnemyTileManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
