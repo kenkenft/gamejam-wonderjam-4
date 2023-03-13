@@ -9,12 +9,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<string> _enemySpawnPool = new List<string>{};
     // public PlayerData PlayerDataInstance;
 
-    public List<GameObject> EnemyObjectPool = new List<GameObject>(){}, EnemyPrefabPool = new List<GameObject>(){};
+    public List<GameObject> EnemyPrefabPool = new List<GameObject>(){};
 
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
     public EnemyTileManager EnemyTileManagerInstance;
-    private int _spawnTimer = 0;
+    private int _spawnTimer = 4;
     
     private void OnEnable()
     {
@@ -93,14 +93,17 @@ public class EnemyManager : MonoBehaviour
     }
     void SetUpEnemy()
     {
+        List<int> tempList = new List<int>();
+
         for(int i = 0; i < EnemySpawnZones.Count; i++)
         {
             if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())  //Only spawn enemy in a free spawn zone
             {
-                SetEnemyData(i, GetFromPool());
+                tempList.Add(i);
                 // SetEnemyData(i, GetFromPool());
             }
         }
+        SetEnemyData(tempList[UnityEngine.Random.Range(0,tempList.Count-1)], GetFromPool());
     }
 
     string GetFromPool()
@@ -129,14 +132,6 @@ public class EnemyManager : MonoBehaviour
 
         tempGameObject.transform.position = EnemySpawnZones[zoneID].transform.position;
         tempGameObject.transform.parent = EnemySpawnZones[zoneID].transform;
-
-        // EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().EnemySO = enemyData;
-        // EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().SetUpDisplay();
-        // EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetOccupant(EnemyObjectPool[zoneID]);
-        // EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetIsOccupied(true);
-
-        // EnemyObjectPool[zoneID].transform.position = EnemySpawnZones[zoneID].transform.position;
-        // EnemyObjectPool[zoneID].transform.parent = EnemySpawnZones[zoneID].transform;
     }
 
     public void InstantiateEnemyPrefabs(int poolSize)
