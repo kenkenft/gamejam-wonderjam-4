@@ -37,4 +37,14 @@ public class EnemyDisplay : MonoBehaviour
         TravelFrequency = EnemySO.TravelFrequency;
         IsImmuneToOneHit = EnemySO.IsImmuneToOneHit;
     }
+
+    public void SubtractHP(int damage)
+    {
+        Health -= damage;
+        if(Health <= 0)
+        {
+            Debug.Log("Enemy defeated!");
+            // ToDo remove enemy from grid
+        }
+    }
 }

@@ -44,6 +44,7 @@ public class GameProperties
                                                                                                                     {0, new string[] {"s0", "s0", "m0", "m0", "l0", "l0"}}
                                                                                                                 };
     
+    private static int[] _enemyGridDimensions = new int[] {8, 6};
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
     {
         return _cannonBallTypeDict[size][typeIDNum];
@@ -69,5 +70,10 @@ public class GameProperties
     public static string[] GetEnemyStageSpawnPool(int stageID)
     {
         return _enemySpawnPools[stageID];
+    }
+
+    public static int[] GetEnemyGridDimensions()
+    {
+        return _enemyGridDimensions;
     }
 }

@@ -14,6 +14,9 @@ public class CannonProperties : MonoBehaviour
     [HideInInspector]public delegate void OnEnterPhase(List<GameObject> list);
     [HideInInspector]public static OnEnterPhase UnloadCannon;
 
+    [HideInInspector]public delegate void OnCheckHit(int[] targetData);
+    [HideInInspector]public static OnCheckHit CheckHitAnything;
+
     private void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
@@ -107,6 +110,31 @@ public class CannonProperties : MonoBehaviour
         }
     }
 
+    void FireAtTargets()
+    {
+        for(int i = 0; i < _loadedCannonBalls.Count; i++)
+            CheckCaughtInBlastRadius(_selectedTargets[i], _loadedCannonBalls[i]);
+        Debug.Log("Salvo complete!");
+    }
+
+    void CheckCaughtInBlastRadius(GameObject targetTile, GameObject cannonBall)
+    {
+        int[] targetData = new int[] 
+                                    {
+                                        targetTile.GetComponent<TileProperties>().GetTileCoordinates()[0], //Tile Column/x coordinate
+                                        targetTile.GetComponent<TileProperties>().GetTileCoordinates()[1], //Tile Row/y coordinate
+                                        cannonBall.GetComponent<CannonBallDisplay>().Damage,
+                                        cannonBall.GetComponent<CannonBallDisplay>().AreaOfEffect
+                                    };
+
+        CheckHitAnything?.Invoke(targetData);
+        // int[] targetTileCoord = targetTile.GetComponent<TileProperties>().GetTileCoordinates();
+        // int blastRadius = cannonBall.GetComponent<CannonBallDisplay>().AreaOfEffect;
+    // Instead, create a delegate that passes the cannonball damange and blast radius to EnemyTileManager
+    // Then have EnemyTileManager find the occupied tiles and damage stuff
+
+    }
+
     void CheckGameState(int gameState)
     {
     
@@ -118,6 +146,14 @@ public class CannonProperties : MonoBehaviour
                 DeselectAllTargets();
                 UnloadCannon?.Invoke(_loadedCannonBalls);
 
+                break;
+            }
+
+            case 5:
+            {
+                Debug.Log("gameState is 5! Firing at targets!");
+                FireAtTargets();
+                CannonManager.SetGameState(2);  // Change to Enemy phase once that's set up
                 break;
             }
             default:
