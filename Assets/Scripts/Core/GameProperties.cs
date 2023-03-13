@@ -11,6 +11,15 @@ public class GameProperties
                                                                                                                     {"l", Resources.LoadAll<CannonBall>("Large")},
                                                                                                                     {"x", Resources.LoadAll<CannonBall>("XLarge")}
                                                                                                                 };
+
+    private static Dictionary<string, Enemy[]> _enemyTypeDict = new Dictionary<string, Enemy[]>()
+                                                                                                {
+                                                                                                    {"s", Resources.LoadAll<Enemy>("Small")},
+                                                                                                    {"m", Resources.LoadAll<Enemy>("Medium")},
+                                                                                                    {"l", Resources.LoadAll<Enemy>("Large")},
+                                                                                                    {"x", Resources.LoadAll<Enemy>("XLarge")},
+                                                                                                    {"b", Resources.LoadAll<Enemy>("Boss")}
+                                                                                                };
     
     private static Dictionary<int, Sprite[]> _phaseSpritesDict = new Dictionary<int, Sprite[]>()
                                                                                                     {
@@ -38,6 +47,11 @@ public class GameProperties
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
     {
         return _cannonBallTypeDict[size][typeIDNum];
+    }
+
+    public static Enemy GetEnemyType(string size, int typeIDNum)
+    {
+        return _enemyTypeDict[size][typeIDNum];
     }
 
     public static Sprite GetPhaseSprite(int phaseNameID, int spriteID)

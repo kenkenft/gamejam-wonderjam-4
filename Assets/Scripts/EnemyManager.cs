@@ -9,9 +9,10 @@ public class EnemyManager : MonoBehaviour
     private List<string> _enemySpawnPool = new List<string>{};
     // public PlayerData PlayerDataInstance;
 
-    public List<GameObject> EnemyObjectPool = new List<GameObject>(){};
+    public List<GameObject> EnemyObjectPool = new List<GameObject>(){}, EnemyPrefabPool = new List<GameObject>(){};
+
+    public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
-    public bool IsSetUp = false;
     private int _spawnTimer = 4;
     
     private void OnEnable()
@@ -31,21 +32,23 @@ public class EnemyManager : MonoBehaviour
 
     void SetUpEnemyPool()
     {
-        GetEnemyPool(0);
+        GetUpEnemyPool(0);
+        InstantiateEnemyPrefabs(_enemySpawnPool.Count);
+
     }
 
-    public void GetEnemyPool(int stageID)
+    void GetUpEnemyPool(int stageID)
     {
         string[] tempArray = GameProperties.GetEnemyStageSpawnPool(stageID);
         for(int i = 0; i < tempArray.Length; i++)
             _enemySpawnPool.Add(tempArray[i]);
     }
 
+
     void SpawnEnemies(int amount)
     {
         int tempInt = Mathf.Clamp(amount, 0, _enemySpawnPool.Count);
         //Process which sets up the Enemy object
-        IsSetUp = false;
     }
 
     void SpawnMoreEnemies()
@@ -66,7 +69,6 @@ public class EnemyManager : MonoBehaviour
             _spawnTimer--;
             return false;
         }
-        
     }
 
     public void ReplenishSelectableCannonBalls()
@@ -74,7 +76,7 @@ public class EnemyManager : MonoBehaviour
         for(int i = 0; i < EnemySpawnZones.Count; i++)
         {
             if(!EnemySpawnZones[i].GetComponent<TileProperties>().GetIsOccupied())
-                SetCannonBallData(i, GetFromPool());
+                SetEnemyData(i, GetFromPool());
         }
     }
 
@@ -90,13 +92,13 @@ public class EnemyManager : MonoBehaviour
         return selected;
     }
 
-    void SetCannonBallData(int zoneID, string typeID)
+    void SetEnemyData(int zoneID, string typeID)
     {
         // Debug.Log("Empty zone detected. Zone: " + zoneID + ". Selected cannonball type ID: " + typeID);
-        CannonBall cannonBallData = GameProperties.GetCannonBallType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
+        Enemy enemyData = GameProperties.GetEnemyType(typeID[0].ToString(), System.Convert.ToInt32(char.GetNumericValue(typeID[1])));
         
-        EnemyObjectPool[zoneID].GetComponent<CannonBallDisplay>().Cb = cannonBallData;
-        EnemyObjectPool[zoneID].GetComponent<CannonBallDisplay>().SetUpDisplay();
+        EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().EnemySO = enemyData;
+        EnemyObjectPool[zoneID].GetComponent<EnemyDisplay>().SetUpDisplay();
         EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetOccupant(EnemyObjectPool[zoneID]);
         EnemySpawnZones[zoneID].GetComponent<TileProperties>().SetIsOccupied(true);
 
@@ -104,26 +106,36 @@ public class EnemyManager : MonoBehaviour
         EnemyObjectPool[zoneID].transform.parent = EnemySpawnZones[zoneID].transform;
     }
 
-    public void SetZonesSelectableState(bool state)
+    public void InstantiateEnemyPrefabs(int poolSize)
     {
-        for(int i = 0 ; i < EnemySpawnZones.Count; i++)
-            EnemySpawnZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
+        // Method that instantiates pool of enemy prefabs
+        GameObject tmpObj;
+        for(int i = 0; i < poolSize; i++)
+        {
+            tmpObj = Instantiate(EnemyPrefab);
+            tmpObj.name = "Connector" + i;
+            tmpObj.SetActive(false);   // Set connector spriterender to inactive to hide connector
+            tmpObj.transform.parent = transform;
+            EnemyPrefabPool.Add(tmpObj);
+        }
     }
 
-    void SetZonesCannonReference()
+    GameObject GetPooledPrefab()
     {
-        for(int i = 0 ; i < EnemySpawnZones.Count; i++)
-            EnemySpawnZones[i].GetComponent<TileProperties>().SetCannonRef(CannonInstance);
-    }
-
-    void PlaceUnloadedCannonBallsInZones(List<GameObject> unloadedCannonBalls)
-    {
-        Debug.Log("Cannonballs to be unloaded: " + unloadedCannonBalls.Count);
+        // Method returns a inactive connector gameobject prefab 
+        for(int i = 0; i < EnemyPrefabPool.Count; i ++)
+        {
+            if(!EnemyPrefabPool[i].activeInHierarchy)
+            {
+                return EnemyPrefabPool[i];
+            }
+        }
+        Debug.Log("No inactive EnemyPrefabs found - All pooled EnemyPrefabs used");
+        return null;
     }
 
     void CheckGameState(int gameState)
-    {
-    
+    {   
         switch(gameState)
         {
             case 2:
