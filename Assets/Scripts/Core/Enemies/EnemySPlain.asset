@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d16a152b3ea970418a94e9f95754ecf, type: 3}
   m_Name: EnemySPlain
   m_EditorClassIdentifier: 
-  Name: Small Cuboidian
+  EnemyName: Small Cuboidian
   Description: Very fast and nimble, yet very weak
-  Artwork: {fileID: 21300000, guid: 6f89b28ddddac8145b85cb984b7b8f5d, type: 3}
+  TypeID: s0
+  LevelSprite: {fileID: 21300000, guid: 6f89b28ddddac8145b85cb984b7b8f5d, type: 3}
+  HelpPortrait: {fileID: 0}
   CapacitySize: 1
   Health: 1
   Damage: 2
