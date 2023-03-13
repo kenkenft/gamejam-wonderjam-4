@@ -45,26 +45,25 @@ public class PhaseButtonManager : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("gameState is 3! Setting up buttons for Loading Phase");
-
+                Debug.Log("PhaseButtonManager.Case3");
                 SetButtonPhaseStates(_buttonStateCombinArray[0]);
                 break;
             }
             case 4:
             {
-                Debug.Log("gameState is 4! Setting up buttons for Aiming Phase");
+                Debug.Log("PhaseButtonManager.Case4");
                 SetButtonPhaseStates(_buttonStateCombinArray[1]);
                 break;
             }
             case 5:
             {
-                Debug.Log("gameState is 5! Setting up buttons for Firing Phase");
+                Debug.Log("PhaseButtonManager.Case5");
                 SetButtonPhaseStates(_buttonStateCombinArray[2]);
                 break;
             }
             default:
             {
-                Debug.Log("gameState is " + gameState + ". Disabling all buttons");
+                Debug.Log("PhaseButtonManager.CaseDefault" + gameState);
                 SetButtonPhaseStates(_buttonStateCombinArray[3]);
                 break;
             }
@@ -82,6 +81,7 @@ public class PhaseButtonManager : MonoBehaviour
 
     void SetIntermediateStates(int buttonsState)
     {
+        Debug.Log("SetIntermediateStates called. State: " + buttonsState);
         SetButtonPhaseStates(_buttonStateCombinArray[buttonsState]);
     }
 }

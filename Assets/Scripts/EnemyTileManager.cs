@@ -133,18 +133,20 @@ public class EnemyTileManager : MonoBehaviour
                 break;
             case 1:
             {
-                Debug.Log("gameState is 1! Calling SetUpLoadingPhase");
+                Debug.Log("EnemyTileManager.Case1");
                 SetUpBoard();
                 CannonManager.SetGameState(2);
                 break;
             }
             case 4:
             {
+                Debug.Log("EnemyTileManager.Case4");
                 SetEnemyTileIsTargetable(true);
                 break;
             }
             default:
             {
+                Debug.Log("EnemyTileManager.CaseDefault" + gameState);
                 SetEnemyTileIsTargetable(false);
                 break;
             }

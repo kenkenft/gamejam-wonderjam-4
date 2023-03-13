@@ -73,7 +73,7 @@ public class CannonProperties : MonoBehaviour
 
     public void CheckFiringPhaseCriteria()
     {
-        if(_selectedTargets.Count == _loadedCannonBalls.Count)
+        if(_selectedTargets.Count == _loadedCannonBalls.Count && _loadedCannonBalls.Count !=0)
             OnCheck?.Invoke(5);
         else
             OnCheck?.Invoke(1);
@@ -138,7 +138,7 @@ public class CannonProperties : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("gameState is 3! Deselecting all targets and emptying cannon");
+                Debug.Log("CannonProperties.Case3");
                 DeselectAllTargets();
                 UnloadCannon?.Invoke(_loadedCannonBalls);
 
@@ -147,14 +147,14 @@ public class CannonProperties : MonoBehaviour
 
             case 5:
             {
-                Debug.Log("gameState is 5! Firing at targets!");
+                Debug.Log("CannonProperties.Case5");
                 FireAtTargets();
                 CannonManager.SetGameState(3);  // Change to Enemy phase once that's set up
                 break;
             }
             default:
             {
-                // Debug.Log("gameState is " + gameState + ". CannonBallLoadingManager doesn't do anything");
+                Debug.Log("CannonProperties.CaseDefault" + gameState);
                 break;
             }
         }

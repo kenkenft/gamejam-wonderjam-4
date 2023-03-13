@@ -79,13 +79,13 @@ public class TileProperties : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("Tile clicked during loading phase! Load this into cannon!");
+                Debug.Log("TileProperties.Case3");
                 _cannonProperties.LoadInToCannon(this.gameObject);
                 break;
             }
             case 4:
             {
-                Debug.Log("Tile clicked during aiming phase! Checking _isDesignated");
+                Debug.Log("TileProperties.Case4");
                 bool isTaskComplete = DesignateOrDelist();
                 if(isTaskComplete)
                 {    
@@ -97,7 +97,7 @@ public class TileProperties : MonoBehaviour
             }
             default:
             {
-                Debug.Log("Tile clicked during other states! That shouldn't be possible!");
+                Debug.Log("TileProperties.CaseDefault" + CannonManager.GetGameState());
                 break;
             }
         }

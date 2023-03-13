@@ -168,18 +168,22 @@ public class EnemyManager : MonoBehaviour
         {
             case 2:
             {
-                Debug.Log("gameState is 2! Calling Setting up enemies");
+                Debug.Log("EnemyManager.Case2");
                 SetUpEnemies();
                 break;
             }
             case 3:
             {
+                Debug.Log("EnemyManager.Case3");
                 if(IsTimeToSpawn() && _enemySpawnPool.Count > 0)
                     SpawnMoreEnemies();
                 break;
             }
             default:
+            {
+                Debug.Log("EnemyManager.CaseDefault" + gameState);
                 break;
+            }
         }
     }   //End of CheckGameState
 }
