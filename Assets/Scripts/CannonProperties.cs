@@ -8,6 +8,7 @@ public class CannonProperties : MonoBehaviour
 
     [SerializeField] private List<GameObject> _loadedCannonBalls = new List<GameObject>{}, _selectedTargets = new List<GameObject>{};
 
+    [SerializeField] private GameObject _loadedCannonBallArea;
     [HideInInspector]public delegate void OnCheckAimingDelegate(int buttonState);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
     [HideInInspector]public delegate void OnEnterPhase(List<GameObject> list);
@@ -23,12 +24,14 @@ public class CannonProperties : MonoBehaviour
         CannonManager.OnGameStateChange -= CheckGameState;
     }
 
-    public void LoadInToCannon(GameObject cannonBall)
+    public void LoadInToCannon(GameObject cannonBallZone)
     {
-        int cannonBallCapacity = cannonBall.GetComponent<CannonBallDisplay>().CapacitySize;
+        int cannonBallCapacity = cannonBallZone.GetComponentInChildren<CannonBallDisplay>().CapacitySize;
         if(_cannonUsedCapacity + cannonBallCapacity <= _cannonMaxCapacity)
         {    
-            _loadedCannonBalls.Add(cannonBall);
+            _loadedCannonBalls.Add(cannonBallZone);
+            cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.position = _loadedCannonBallArea.transform.position;
+            cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.parent = _loadedCannonBallArea.transform;
             _cannonUsedCapacity += cannonBallCapacity;
         }
         else
@@ -41,7 +44,7 @@ public class CannonProperties : MonoBehaviour
     {
         // Removes most recently loaded cannonball and assoicated capacity usage
         int lastIndex = _loadedCannonBalls.Count-1;
-        _cannonUsedCapacity =- _loadedCannonBalls[lastIndex].GetComponent<CannonBallDisplay>().CapacitySize;
+        _cannonUsedCapacity =- _loadedCannonBalls[lastIndex].GetComponentInChildren<CannonBallDisplay>().CapacitySize;
         _loadedCannonBalls.RemoveAt(lastIndex);  
     }
 
@@ -114,6 +117,7 @@ public class CannonProperties : MonoBehaviour
                 Debug.Log("gameState is 3! Deselecting all targets and emptying cannon");
                 DeselectAllTargets();
                 UnloadCannon?.Invoke(_loadedCannonBalls);
+
                 break;
             }
             default:

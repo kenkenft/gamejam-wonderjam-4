@@ -80,7 +80,7 @@ public class TileProperties : MonoBehaviour
             case 3:
             {
                 Debug.Log("Tile clicked during loading phase! Load this into cannon!");
-                _cannonProperties.LoadInToCannon(_occupant);
+                _cannonProperties.LoadInToCannon(this.gameObject);
                 break;
             }
             case 4:
