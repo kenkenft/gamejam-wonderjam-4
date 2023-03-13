@@ -41,13 +41,18 @@ public class CannonProperties : MonoBehaviour
             OnCheck?.Invoke(false);
     }
     
-    public void DesignateTarget(GameObject target)
+    public bool DesignateTarget(GameObject target)
     {
-        _selectedTargets.Add(target);
-        Debug.Log("Tile designated target! Name: " + target.name);
+        if( _selectedTargets.Count < _loadedCannonBalls.Count)
+        {
+            _selectedTargets.Add(target);
+            Debug.Log("Tile designated target! Name: " + target.name);
+            return true;
+        }
+        return false;
     }
 
-    public void DelistTarget(int[] targetTile)
+    public bool DelistTarget(int[] targetTile)
     {
         Debug.Log("Tile to be delisted!");
         if(_selectedTargets.Count > 0)
@@ -60,9 +65,11 @@ public class CannonProperties : MonoBehaviour
                 {    
                     Debug.Log(_selectedTargets[i].name + " to be delisted!");
                     _selectedTargets.RemoveAt(i);
-                    break;
+                    return true;
                 }
             }
         }
+        return false;
     }
+
 }

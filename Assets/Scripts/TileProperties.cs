@@ -85,12 +85,9 @@ public class TileProperties : MonoBehaviour
             case 4:
             {
                 Debug.Log("Tile clicked during aiming phase! Checking _isDesignated");
-                if(!_isDesignated)
-                    _cannonProperties.DesignateTarget(this.gameObject);
-                else
-                    _cannonProperties.DelistTarget(tileXY);
-
-                _isDesignated = !_isDesignated;
+                bool isTaskComplete = DesignateOrDelist();
+                if(isTaskComplete)
+                    _isDesignated = !_isDesignated;
 
                 break;
             }
@@ -100,5 +97,13 @@ public class TileProperties : MonoBehaviour
                 break;
             }
         }
+    } //End of CheckGameState
+
+    bool DesignateOrDelist()
+    {
+        if(!_isDesignated)
+            return _cannonProperties.DesignateTarget(this.gameObject);
+        else
+            return _cannonProperties.DelistTarget(tileXY);
     }
 }
