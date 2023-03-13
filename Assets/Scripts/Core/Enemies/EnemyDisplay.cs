@@ -38,13 +38,16 @@ public class EnemyDisplay : MonoBehaviour
         IsImmuneToOneHit = EnemySO.IsImmuneToOneHit;
     }
 
-    public void SubtractHP(int damage)
+    public bool SubtractHP(int damage)
     {
         Health -= damage;
         if(Health <= 0)
         {
             Debug.Log("Enemy defeated!");
+            _spriteRendererComp.enabled = false;
+            return true;
             // ToDo remove enemy from grid
         }
+        return false;
     }
 }

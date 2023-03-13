@@ -79,16 +79,9 @@ public class EnemyTileManager : MonoBehaviour
         // Assumes targetData = {target tile's column/x coordinate, target tile's row/y coordinate, cannonball damage, cannonball area of effect}
         int[] searchGridCorners = SetUpGridSearchBoundaries(targetData);
 
-        for(int row = searchGridCorners[0]; row <= searchGridCorners[1]; row++)
-        {
-            for(int col = searchGridCorners[2]; col <= searchGridCorners[3]; col++)
-            {
-                if(EnemyTileDict[row][col].GetComponent<TileProperties>().GetIsOccupied())
-                {
-                    EnemyTileDict[row][col].GetComponent<TileProperties>().GetOccupant().GetComponent<EnemyDisplay>().SubtractHP(targetData[2]);
-                }
-            }
-        }
+        List<GameObject> occupiedTiles = FindOccupiedTiles(searchGridCorners);
+        if(occupiedTiles.Count > 0)
+            ApplyDamageToOccupants(occupiedTiles, targetData[2]);
     }
 
     int[] SetUpGridSearchBoundaries(int[] targetData)
@@ -101,6 +94,34 @@ public class EnemyTileManager : MonoBehaviour
         searchGridCorners[3] = Mathf.Clamp(targetData[1]+ targetData[3], 0, GameProperties.GetEnemyGridDimensions()[1]);
 
         return searchGridCorners;   // Assumes {Left-most boundary, right-most boundary, bottom-most boundary, top-most boundary}
+    }
+
+    List<GameObject> FindOccupiedTiles(int[] searchGridCorners)
+    {
+        List<GameObject> tempList = new List<GameObject>();
+        for(int row = searchGridCorners[0]; row <= searchGridCorners[1]; row++)
+        {
+            for(int col = searchGridCorners[2]; col <= searchGridCorners[3]; col++)
+            {
+                if(EnemyTileDict[row][col].GetComponent<TileProperties>().GetIsOccupied())
+                    tempList.Add(EnemyTileDict[row][col]);
+            }
+        }
+        return tempList;
+    }
+    void ApplyDamageToOccupants(List<GameObject> occupiedTiles, int damage)
+    {
+        bool isDefeated;
+        for(int i = 0; i < occupiedTiles.Count; i++)
+        {
+            TileProperties tileProperties = occupiedTiles[i].GetComponent<TileProperties>();
+            isDefeated = tileProperties.GetOccupant().GetComponent<EnemyDisplay>().SubtractHP(damage);
+            if(isDefeated)
+            {
+                tileProperties.RemoveOccupant();
+                tileProperties.SetIsOccupied(false);
+            }
+        }
     }
 
     void CheckGameState(int gameState)
