@@ -94,9 +94,11 @@ public class CannonProperties : MonoBehaviour
 
     void DeselectAllTargets()
     {
-        for(int i = 0; i <_selectedTargets.Count; i++)
+        // foreach(GameObject target in _selectedTargets)
+        for(int i = _selectedTargets.Count - 1; i >= 0 ; i--)
         {
             _selectedTargets[i].GetComponent<TileProperties>().DeselectAndHideReticle();
+            _selectedTargets.RemoveAt(i);
         }
     }
 
