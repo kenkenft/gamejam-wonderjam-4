@@ -13,19 +13,20 @@ public class PhaseButtonManager : MonoBehaviour
                                                 new int[] {2,3,0},  //Aiming phase button configuration
                                                 new int[] {0,0,3},  //Firing phase button configuration
                                                 new int[] {0,0,0},  //Other phases button configuration
-                                                new int[] {3,1,0}   //Loading-Aiming intermediate button configuration
+                                                new int[] {3,1,0},  //Loading-Aiming intermediate button configuration
+                                                new int[] {2,3,1}   //Aiming-Firing intermediate button configuration
                                             };
 
     void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
-        CannonProperties.OnCheck += SetIntermediateAimingStates;
+        CannonProperties.OnCheck += SetIntermediateStates;
     }
 
     void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
-        CannonProperties.OnCheck -= SetIntermediateAimingStates;
+        CannonProperties.OnCheck -= SetIntermediateStates;
     }
 
     void Start()
@@ -45,7 +46,7 @@ public class PhaseButtonManager : MonoBehaviour
             case 3:
             {
                 Debug.Log("gameState is 3! Setting up buttons for Loading Phase");
-                
+
                 SetButtonPhaseStates(_buttonStateCombinArray[0]);
                 break;
             }
@@ -79,11 +80,8 @@ public class PhaseButtonManager : MonoBehaviour
         }
     }
 
-    void SetIntermediateAimingStates(bool state)
+    void SetIntermediateStates(int buttonsState)
     {
-        if(state)
-            SetButtonPhaseStates(_buttonStateCombinArray[4]);
-        else
-            SetButtonPhaseStates(_buttonStateCombinArray[0]);
+        SetButtonPhaseStates(_buttonStateCombinArray[buttonsState]);
     }
 }

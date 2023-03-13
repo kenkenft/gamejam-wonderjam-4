@@ -8,7 +8,7 @@ public class CannonProperties : MonoBehaviour
 
     [SerializeField] private List<GameObject> _loadedCannonBalls = new List<GameObject>{}, _selectedTargets = new List<GameObject>{};
 
-    [HideInInspector]public delegate void OnCheckAimingDelegate(bool state);
+    [HideInInspector]public delegate void OnCheckAimingDelegate(int buttonState);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
 
     public void LoadInToCannon(GameObject cannonBall)
@@ -36,9 +36,9 @@ public class CannonProperties : MonoBehaviour
     public void CheckAimingPhaseCriteria()
     {
         if(_cannonUsedCapacity > 0)
-            OnCheck?.Invoke(true);
+            OnCheck?.Invoke(4);
         else
-            OnCheck?.Invoke(false);
+            OnCheck?.Invoke(0);
     }
     
     public bool DesignateTarget(GameObject target)
@@ -47,9 +47,18 @@ public class CannonProperties : MonoBehaviour
         {
             _selectedTargets.Add(target);
             Debug.Log("Tile designated target! Name: " + target.name);
+            CheckFiringPhaseCriteria();
             return true;
         }
         return false;
+    }
+
+    public void CheckFiringPhaseCriteria()
+    {
+        if(_selectedTargets.Count == _loadedCannonBalls.Count)
+            OnCheck?.Invoke(5);
+        else
+            OnCheck?.Invoke(1);
     }
 
     public bool DelistTarget(int[] targetTile)
@@ -65,6 +74,7 @@ public class CannonProperties : MonoBehaviour
                 {    
                     Debug.Log(_selectedTargets[i].name + " to be delisted!");
                     _selectedTargets.RemoveAt(i);
+                    CheckFiringPhaseCriteria();
                     return true;
                 }
             }
