@@ -76,17 +76,13 @@ public class EnemyTileManager : MonoBehaviour
     
         switch(gameState)
         {
+            case 0:
+                break;
             case 1:
             {
                 Debug.Log("gameState is 1! Calling SetUpLoadingPhase");
                 SetUpBoard();
                 CannonManager.SetGameState(2);
-                break;
-            }
-            case 3:
-            {
-                //Turn off enemy tiles
-                SetEnemyTileIsTargetable(false);
                 break;
             }
             case 4:
@@ -95,7 +91,10 @@ public class EnemyTileManager : MonoBehaviour
                 break;
             }
             default:
+            {
+                SetEnemyTileIsTargetable(false);
                 break;
+            }
         }
     }   //End of CheckGameState
 }
