@@ -159,9 +159,7 @@ public class CannonProperties : MonoBehaviour
 
     void ReceiveForHighlight(int[] tileCoords, bool isHighlight)
     {
-        if(_loadedCannonBalls.Count == _selectedTargets.Count && !isHighlight)
-            PassToEnemyTileManager?.Invoke(tileCoords, isHighlight,_loadedCannonBalls[_selectedTargets.Count-1].GetComponentInChildren<CannonBallDisplay>().AreaOfEffect);
-        else if(_loadedCannonBalls.Count > _selectedTargets.Count)
+        if(_loadedCannonBalls.Count > _selectedTargets.Count || !isHighlight)
             PassToEnemyTileManager?.Invoke(tileCoords, isHighlight,_loadedCannonBalls[_selectedTargets.Count].GetComponentInChildren<CannonBallDisplay>().AreaOfEffect);
     }
 
