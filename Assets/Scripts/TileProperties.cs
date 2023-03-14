@@ -53,11 +53,19 @@ public class TileProperties : MonoBehaviour
 
     void OnMouseOver()
     {
-        Debug.Log("MouseOVER!");
         if((CannonManager.GetGameState() == 4) && _isTargetable)
         {
             Debug.Log("Highlight Tiles");
             PassAlongForHighlighting?.Invoke(tileXY, true);
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if((CannonManager.GetGameState() == 4) && _isTargetable)
+        {
+            Debug.Log("Exit Tile");
+            PassAlongForHighlighting?.Invoke(tileXY, false);
         }
     }
 
@@ -128,5 +136,15 @@ public class TileProperties : MonoBehaviour
     {
         _isDesignated = false;
         _tileReticle.enabled = false;
+    }
+
+    public bool GetIsDesignated()
+    {
+        return _isDesignated;
+    }
+
+    public void SetTileReticle(bool state)
+    {
+        _tileReticle.enabled = state;
     }
 }

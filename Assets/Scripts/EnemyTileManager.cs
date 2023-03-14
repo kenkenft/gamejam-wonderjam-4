@@ -203,8 +203,25 @@ public class EnemyTileManager : MonoBehaviour
 
     void HighlightAffectedTiles(int[] tileCoords, bool isHighlight, int blastRadius)
     {
-        Debug.Log("tileCoords: " +tileCoords[0] + ", " + tileCoords[1] + ". isHighlight: " + isHighlight + ". blastRadius: " + blastRadius);
+        // Debug.Log("tileCoords: " +tileCoords[0] + ", " + tileCoords[1] + ". isHighlight: " + isHighlight + ". blastRadius: " + blastRadius);
+        int[] tempArray = new int[] {tileCoords[0], tileCoords[1], 0, blastRadius};
+        int[] searchGridCorners = SetUpGridSearchBoundaries(tempArray);
+
+        SetTileHighlight(searchGridCorners, isHighlight);
     }
+
+    void SetTileHighlight(int[] searchGridCorners, bool isHighlight)
+    {
+        for(int row = searchGridCorners[2]; row <= searchGridCorners[3]; row++)
+        {
+            for(int col = searchGridCorners[0]; col <= searchGridCorners[1]; col++)
+            {
+                if(!EnemyTileDict[row][col].GetComponent<TileProperties>().GetIsDesignated())
+                    EnemyTileDict[row][col].GetComponent<TileProperties>().SetTileReticle(isHighlight);
+            }
+        }
+    }
+
     void CheckGameState(int gameState)
     {
     
