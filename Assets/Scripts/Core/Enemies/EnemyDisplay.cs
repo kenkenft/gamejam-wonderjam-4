@@ -36,6 +36,7 @@ public class EnemyDisplay : MonoBehaviour
         TravelDistance = EnemySO.TravelDistance;
         TravelFrequency = EnemySO.TravelFrequency;
         IsImmuneToOneHit = EnemySO.IsImmuneToOneHit;
+        ResetTravelCounter();
     }
 
     public bool SubtractHP(int damage)
@@ -51,7 +52,7 @@ public class EnemyDisplay : MonoBehaviour
         return false;
     }
 
-    public void ResetTravelCounter(int value)
+    public void ResetTravelCounter()
     {
         TravelCounter = TravelFrequency;
     }

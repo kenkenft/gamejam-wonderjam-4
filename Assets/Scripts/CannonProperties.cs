@@ -149,7 +149,9 @@ public class CannonProperties : MonoBehaviour
             {
                 Debug.Log("CannonProperties.Case5");
                 FireAtTargets();
+                Debug.Log("CannonProperties.Case5: FireAtTargets finished");
                 CannonManager.SetGameState(6);  // Change to Enemy phase once that's set up
+                Debug.Log("CannonProperties.Case5: SetGameState(6)");
                 break;
             }
             default:

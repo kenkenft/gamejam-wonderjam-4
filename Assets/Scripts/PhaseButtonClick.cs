@@ -11,7 +11,7 @@ public class PhaseButtonClick : MonoBehaviour
     
     void OnMouseDown()
     {
-        SetGameState?.Invoke(TargetState);
         Debug.Log("Button clicked: " + gameObject.name);
+        SetGameState?.Invoke(TargetState);
     }
 }

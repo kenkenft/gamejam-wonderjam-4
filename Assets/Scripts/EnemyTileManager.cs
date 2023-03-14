@@ -149,7 +149,7 @@ public class EnemyTileManager : MonoBehaviour
                     TileProperties tempTileProperties = occupiedTiles[i].GetComponent<TileProperties>();
                     tempArray = tempTileProperties.GetTileCoordinates();
                     x = tempEnemyDisplay.TravelDistance;
-                    TileProperties newTargetTile = EnemyTileDict[tempArray[0] + x ][ tempArray[1]].GetComponent<TileProperties>();
+                    TileProperties newTargetTile = EnemyTileDict[tempArray[1] + x ][ tempArray[0]].GetComponent<TileProperties>();
                     if(!newTargetTile.GetIsOccupied())
                     {
                         GameObject enemyObject = tempTileProperties.GetOccupant();
@@ -159,6 +159,7 @@ public class EnemyTileManager : MonoBehaviour
                         newTargetTile.SetOccupant(enemyObject);
                         enemyObject.transform.position = newTargetTile.transform.position;
                         enemyObject.transform.parent = newTargetTile.transform;
+                        enemyObject.GetComponent<EnemyDisplay>().ResetTravelCounter();
 
                         tempTileProperties.SetIsOccupied(false);
                         tempTileProperties.RemoveOccupant();
@@ -206,6 +207,9 @@ public class EnemyTileManager : MonoBehaviour
             {
                 Debug.Log("EnemyTileManager.Case6");
                 EnemiesBehaviour();
+                Debug.Log("EnemyTileManager.Case6: EnemiesBehaviour finished");
+                CannonManager.SetGameState(3);
+                Debug.Log("EnemyTileManager.Case6: SetGameState(3)");
                 break;
             }
             default:

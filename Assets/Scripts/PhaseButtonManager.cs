@@ -16,10 +16,16 @@ public class PhaseButtonManager : MonoBehaviour
                                                 new int[] {3,1,0},  //Loading-Aiming intermediate button configuration
                                                 new int[] {2,3,1}   //Aiming-Firing intermediate button configuration
                                             };
-
-    void OnEnable()
+    
+    
+    void Awake()
     {
         CannonManager.OnGameStateChange += CheckGameState;
+
+    }
+    void OnEnable()
+    {
+        // CannonManager.OnGameStateChange += CheckGameState;
         CannonProperties.OnCheck += SetIntermediateStates;
     }
 
@@ -58,7 +64,7 @@ public class PhaseButtonManager : MonoBehaviour
             case 5:
             {
                 Debug.Log("PhaseButtonManager.Case5");
-                SetButtonPhaseStates(_buttonStateCombinArray[2]);
+                SetButtonPhaseStates(_buttonStateCombinArray[0]);   //Changed from 2 to 0 because PhaseButtonManager is being called last in the invoker. I don't know why
                 break;
             }
             default:
