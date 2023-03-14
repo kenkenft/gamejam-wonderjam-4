@@ -140,7 +140,7 @@ public class CannonProperties : MonoBehaviour
     {
         for(int i = 0; i < _loadedCannonBalls.Count; i++)
             CheckCaughtInBlastRadius(_selectedTargets[i], _loadedCannonBalls[i]);
-        Debug.Log("Salvo complete!");
+        // Debug.Log("Salvo complete!");
     }
 
     void CheckCaughtInBlastRadius(GameObject targetTile, GameObject cannonBall)
@@ -159,7 +159,8 @@ public class CannonProperties : MonoBehaviour
 
     void ReceiveForHighlight(int[] tileCoords, bool isHighlight)
     {
-        PassToEnemyTileManager?.Invoke(tileCoords, isHighlight,_loadedCannonBalls[_selectedTargets.Count].GetComponentInChildren<CannonBallDisplay>().AreaOfEffect);
+        if(_loadedCannonBalls.Count > _selectedTargets.Count || !isHighlight)
+            PassToEnemyTileManager?.Invoke(tileCoords, isHighlight,_loadedCannonBalls[_selectedTargets.Count].GetComponentInChildren<CannonBallDisplay>().AreaOfEffect);
     }
 
     void CheckGameState(int gameState)
@@ -169,24 +170,24 @@ public class CannonProperties : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("CannonProperties.Case3");
+                // Debug.Log("CannonProperties.Case3");
                 DeselectAllTargets();
                 break;
             }
 
             case 5:
             {
-                Debug.Log("CannonProperties.Case5");
+                // Debug.Log("CannonProperties.Case5");
                 FireAtTargets();
-                Debug.Log("CannonProperties.Case5: FireAtTargets finished");
+                // Debug.Log("CannonProperties.Case5: FireAtTargets finished");
                 EmptyCannon(false);
                 CannonManager.SetGameState(6);  // Change to Enemy phase once that's set up
-                Debug.Log("CannonProperties.Case5: SetGameState(6)");
+                // Debug.Log("CannonProperties.Case5: SetGameState(6)");
                 break;
             }
             default:
             {
-                Debug.Log("CannonProperties.CaseDefault" + gameState);
+                // Debug.Log("CannonProperties.CaseDefault" + gameState);
                 break;
             }
         }

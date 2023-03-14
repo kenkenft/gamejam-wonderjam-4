@@ -94,11 +94,6 @@ public class CannonBallLoadingManager : MonoBehaviour
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetCannonRef(CannonInstance);
     }
 
-    void PlaceUnloadedCannonBallsInZones(List<GameObject> unloadedCannonBalls)
-    {
-        Debug.Log("Cannonballs to be unloaded: " + unloadedCannonBalls.Count);
-    }
-
     void CheckGameState(int gameState)
     {
     
@@ -106,14 +101,14 @@ public class CannonBallLoadingManager : MonoBehaviour
         {
             case 2:
             {
-                Debug.Log("CanonProperties.Case2");
+                // Debug.Log("CanonProperties.Case2");
                 SetUpLoadingPhase();
                 CannonManager.SetGameState(GameProperties.GetPhaseID("loading"));
                 break;
             }
             case 3:
             {
-                Debug.Log("CanonProperties.Case3");
+                // Debug.Log("CanonProperties.Case3");
                 SetZonesCannonReference();
                 SetZonesSelectableState(true);
                 UnloadCannon?.Invoke(true);
@@ -122,13 +117,13 @@ public class CannonBallLoadingManager : MonoBehaviour
             }
             case 4:
             {
-                Debug.Log("CanonProperties.Case4" );
+                // Debug.Log("CanonProperties.Case4" );
                 SetZonesSelectableState(false);
                 break;
             }
             default:
             {
-                Debug.Log("CanonProperties.CaseDefault" + gameState);
+                // Debug.Log("CanonProperties.CaseDefault" + gameState);
                 break;
             }
         }

@@ -231,29 +231,29 @@ public class EnemyTileManager : MonoBehaviour
                 break;
             case 1:
             {
-                Debug.Log("EnemyTileManager.Case1");
+                // Debug.Log("EnemyTileManager.Case1");
                 SetUpBoard();
                 CannonManager.SetGameState(2);
                 break;
             }
             case 4:
             {
-                Debug.Log("EnemyTileManager.Case4");
+                // Debug.Log("EnemyTileManager.Case4");
                 SetEnemyTileIsTargetable(true);
                 break;
             }
             case 6:
             {
-                Debug.Log("EnemyTileManager.Case6");
+                // Debug.Log("EnemyTileManager.Case6");
                 EnemiesBehaviour();
-                Debug.Log("EnemyTileManager.Case6: EnemiesBehaviour finished");
+                // Debug.Log("EnemyTileManager.Case6: EnemiesBehaviour finished");
                 CannonManager.SetGameState(3);
-                Debug.Log("EnemyTileManager.Case6: SetGameState(3)");
+                // Debug.Log("EnemyTileManager.Case6: SetGameState(3)");
                 break;
             }
             default:
             {
-                Debug.Log("EnemyTileManager.CaseDefault" + gameState);
+                // Debug.Log("EnemyTileManager.CaseDefault" + gameState);
                 SetEnemyTileIsTargetable(false);
                 break;
             }

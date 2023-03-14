@@ -164,7 +164,7 @@ public class EnemyManager : MonoBehaviour
                 return EnemyPrefabPool[i];
             }
         }
-        Debug.Log("No inactive EnemyPrefabs found - All pooled EnemyPrefabs used");
+        // Debug.Log("No inactive EnemyPrefabs found - All pooled EnemyPrefabs used");
         return null;
     }
 
@@ -174,20 +174,22 @@ public class EnemyManager : MonoBehaviour
         {
             case 2:
             {
-                Debug.Log("EnemyManager.Case2");
+                // Debug.Log("EnemyManager.Case2");
                 SetUpEnemies();
                 break;
             }
             case 3:
             {
-                Debug.Log("EnemyManager.Case3");
-                if((IsTimeToSpawn() || !AnyEnemiesOnGrid.Invoke()) && _enemySpawnPool.Count > 0 )
+                // Debug.Log("EnemyManager.Case3");
+                if(_enemySpawnPool.Count <= 0)
+                    CannonManager.SetGameState(7);
+                else if((IsTimeToSpawn() || !AnyEnemiesOnGrid.Invoke()) && _enemySpawnPool.Count > 0 )
                     SpawnMoreEnemies();
                 break;
             }
             default:
             {
-                Debug.Log("EnemyManager.CaseDefault" + gameState);
+                // Debug.Log("EnemyManager.CaseDefault" + gameState);
                 break;
             }
         }

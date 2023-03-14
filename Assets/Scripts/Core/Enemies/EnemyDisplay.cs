@@ -44,7 +44,7 @@ public class EnemyDisplay : MonoBehaviour
         Health -= damage;
         if(Health <= 0)
         {
-            Debug.Log("Enemy defeated!");
+            // Debug.Log("Enemy defeated!");
             _spriteRendererComp.enabled = false;
             return true;
             // ToDo remove enemy from grid

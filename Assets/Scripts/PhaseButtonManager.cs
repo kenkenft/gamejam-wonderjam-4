@@ -51,25 +51,25 @@ public class PhaseButtonManager : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("PhaseButtonManager.Case3");
+                // Debug.Log("PhaseButtonManager.Case3");
                 SetButtonPhaseStates(_buttonStateCombinArray[0]);
                 break;
             }
             case 4:
             {
-                Debug.Log("PhaseButtonManager.Case4");
+                // Debug.Log("PhaseButtonManager.Case4");
                 SetButtonPhaseStates(_buttonStateCombinArray[1]);
                 break;
             }
             case 5:
             {
-                Debug.Log("PhaseButtonManager.Case5");
+                // Debug.Log("PhaseButtonManager.Case5");
                 SetButtonPhaseStates(_buttonStateCombinArray[0]);   //Changed from 2 to 0 because PhaseButtonManager is being called last in the invoker. I don't know why
                 break;
             }
             default:
             {
-                Debug.Log("PhaseButtonManager.CaseDefault" + gameState);
+                // Debug.Log("PhaseButtonManager.CaseDefault" + gameState);
                 SetButtonPhaseStates(_buttonStateCombinArray[3]);
                 break;
             }
@@ -87,7 +87,7 @@ public class PhaseButtonManager : MonoBehaviour
 
     void SetIntermediateStates(int buttonsState)
     {
-        Debug.Log("SetIntermediateStates called. State: " + buttonsState);
+        // Debug.Log("SetIntermediateStates called. State: " + buttonsState);
         SetButtonPhaseStates(_buttonStateCombinArray[buttonsState]);
     }
 }

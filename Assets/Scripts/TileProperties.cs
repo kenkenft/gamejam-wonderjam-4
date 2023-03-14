@@ -42,12 +42,12 @@ public class TileProperties : MonoBehaviour
     {
         if(_isTargetable)
         {
-            Debug.Log("Tile is targetable");
+            // Debug.Log("Tile is targetable");
             CheckGameState();
         }
         else
         {
-            Debug.Log("Tile is not targetable");
+            // Debug.Log("Tile is not targetable");
         }
     }
 
@@ -55,7 +55,7 @@ public class TileProperties : MonoBehaviour
     {
         if((CannonManager.GetGameState() == 4) && _isTargetable)
         {
-            Debug.Log("Highlight Tiles");
+            // Debug.Log("Highlight Tiles");
             PassAlongForHighlighting?.Invoke(tileXY, true);
         }
     }
@@ -64,7 +64,7 @@ public class TileProperties : MonoBehaviour
     {
         if((CannonManager.GetGameState() == 4) && _isTargetable)
         {
-            Debug.Log("Exit Tile");
+            // Debug.Log("Exit Tile");
             PassAlongForHighlighting?.Invoke(tileXY, false);
         }
     }
@@ -100,13 +100,13 @@ public class TileProperties : MonoBehaviour
         {
             case 3:
             {
-                Debug.Log("TileProperties.Case3");
+                // Debug.Log("TileProperties.Case3");
                 _cannonProperties.LoadInToCannon(this.gameObject);
                 break;
             }
             case 4:
             {
-                Debug.Log("TileProperties.Case4");
+                // Debug.Log("TileProperties.Case4");
                 bool isTaskComplete = DesignateOrDelist();
                 if(isTaskComplete)
                 {    
@@ -118,7 +118,7 @@ public class TileProperties : MonoBehaviour
             }
             default:
             {
-                Debug.Log("TileProperties.CaseDefault" + CannonManager.GetGameState());
+                // Debug.Log("TileProperties.CaseDefault" + CannonManager.GetGameState());
                 break;
             }
         }
