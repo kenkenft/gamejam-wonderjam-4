@@ -12,7 +12,7 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     public CannonProperties CannonInstance;
-    [HideInInspector]public delegate void OnEnterPhase();
+    [HideInInspector]public delegate void OnEnterPhase(bool isUnloading);
     [HideInInspector]public static OnEnterPhase UnloadCannon;
     
     private void OnEnable()
@@ -115,7 +115,7 @@ public class CannonBallLoadingManager : MonoBehaviour
                 Debug.Log("CanonProperties.Case3");
                 SetZonesCannonReference();
                 SetZonesSelectableState(true);
-                UnloadCannon?.Invoke();
+                UnloadCannon?.Invoke(true);
                 ReplenishSelectableCannonBalls();
                 break;
             }

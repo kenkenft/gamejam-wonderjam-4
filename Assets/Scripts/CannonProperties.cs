@@ -52,15 +52,18 @@ public class CannonProperties : MonoBehaviour
         _loadedCannonBalls.RemoveAt(lastIndex);  
     }
 
-    public void EmptyCannon()
+    public void EmptyCannon(bool isUnloading)
     {
         //Does something to unload cannonballs?
         TileProperties tileProperties;
-        for(int i = 0; i< _loadedCannonBalls.Count; i++)
+        if(isUnloading)
         {
-            tileProperties = _loadedCannonBalls[i].GetComponent<TileProperties>();
-            tileProperties.GetOccupant().transform.position = _loadedCannonBalls[i].transform.position;
-            tileProperties.SetIsOccupied(true);
+            for(int i = 0; i< _loadedCannonBalls.Count; i++)
+            {
+                tileProperties = _loadedCannonBalls[i].GetComponent<TileProperties>();
+                tileProperties.GetOccupant().transform.position = _loadedCannonBalls[i].transform.position;
+                tileProperties.SetIsOccupied(true);
+            }
         }
 
         _loadedCannonBalls.Clear();
@@ -165,6 +168,7 @@ public class CannonProperties : MonoBehaviour
                 Debug.Log("CannonProperties.Case5");
                 FireAtTargets();
                 Debug.Log("CannonProperties.Case5: FireAtTargets finished");
+                EmptyCannon(false);
                 CannonManager.SetGameState(6);  // Change to Enemy phase once that's set up
                 Debug.Log("CannonProperties.Case5: SetGameState(6)");
                 break;
