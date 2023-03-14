@@ -7,7 +7,7 @@ public class EnemyTileManager : MonoBehaviour
     public GameObject Tile;     // Prefab of Tile
     public CannonProperties CannonInstance;
     [SerializeField] public Dictionary<int, List<GameObject>> EnemyTileDict = new Dictionary<int, List<GameObject>>();
-    // public int BoardHeight, BoardWidth;
+    private int  _gridWidth, _gridHeight;
     
     private float _tileMargin = 1.20f;       // Percentage margin of extra space around tile
     private GameObject[,] tiles;
@@ -26,6 +26,8 @@ public class EnemyTileManager : MonoBehaviour
     }
     public void SetUpBoard()
     {
+        _gridWidth = GameProperties.GetEnemyGridDimensions()[0]; 
+        _gridHeight = GameProperties.GetEnemyGridDimensions()[1];
         Vector2 offset = _tileMargin * Tile.GetComponentInChildren<SpriteRenderer>().bounds.size;
         CreateTiles(offset.x, offset.y);
     }   ////// End of SetUpBoard()
@@ -39,10 +41,10 @@ public class EnemyTileManager : MonoBehaviour
 
         // List<GameObject> tempList = new List<GameObject>();
         // Start of for loop for setting tile objects' positions and properties
-        for (int row = 0; row < GameProperties.GetEnemyGridDimensions()[0]; row++) 
+        for (int row = 0; row < _gridHeight; row++) 
         {      
             List<GameObject> tempList = new List<GameObject>();
-            for (int col = 0; col < GameProperties.GetEnemyGridDimensions()[1]; col++) 
+            for (int col = 0; col < _gridWidth; col++) 
             {
                 GameObject newTile = Instantiate(Tile, new Vector3(startX + (tileOffsetX * col), startY - (tileOffsetY * row), 0), Tile.transform.rotation);
                 tempList.Add(newTile);
@@ -88,10 +90,10 @@ public class EnemyTileManager : MonoBehaviour
     {
         int[] searchGridCorners = new int[4];
         
-        searchGridCorners[0] = Mathf.Clamp(targetData[0]- targetData[3], 0, GameProperties.GetEnemyGridDimensions()[0]);
-        searchGridCorners[1] = Mathf.Clamp(targetData[0]+ targetData[3], 0, GameProperties.GetEnemyGridDimensions()[0]);
-        searchGridCorners[2] = Mathf.Clamp(targetData[1]- targetData[3], 0, GameProperties.GetEnemyGridDimensions()[1]);
-        searchGridCorners[3] = Mathf.Clamp(targetData[1]+ targetData[3], 0, GameProperties.GetEnemyGridDimensions()[1]);
+        searchGridCorners[0] = Mathf.Clamp(targetData[0]- targetData[3], 0, _gridWidth-1);
+        searchGridCorners[1] = Mathf.Clamp(targetData[0]+ targetData[3], 0, _gridWidth-1);
+        searchGridCorners[2] = Mathf.Clamp(targetData[1]- targetData[3], 0, _gridHeight-1);
+        searchGridCorners[3] = Mathf.Clamp(targetData[1]+ targetData[3], 0, _gridHeight-1);
 
         return searchGridCorners;   // Assumes {Left-most boundary, right-most boundary, bottom-most boundary, top-most boundary}
     }
@@ -99,9 +101,9 @@ public class EnemyTileManager : MonoBehaviour
     List<GameObject> FindOccupiedTiles(int[] searchGridCorners)
     {
         List<GameObject> tempList = new List<GameObject>();
-        for(int row = searchGridCorners[0]; row <= searchGridCorners[1]; row++)
+        for(int row = searchGridCorners[2]; row <= searchGridCorners[3]; row++)
         {
-            for(int col = searchGridCorners[2]; col <= searchGridCorners[3]; col++)
+            for(int col = searchGridCorners[0]; col <= searchGridCorners[1]; col++)
             {
                 if(EnemyTileDict[row][col].GetComponent<TileProperties>().GetIsOccupied())
                     tempList.Add(EnemyTileDict[row][col]);
@@ -126,7 +128,7 @@ public class EnemyTileManager : MonoBehaviour
 
     void EnemiesBehaviour()
     {
-        int[] tempArray = new int[] {GameProperties.GetEnemyGridDimensions()[0], GameProperties.GetEnemyGridDimensions()[1]};
+        int[] tempArray = new int[] {_gridWidth, _gridHeight};
         int x = tempArray[0] > tempArray[1] ? tempArray[0] : tempArray[1];
         int[] targetData = {0, 0, 0, x};
         int[] searchGridCorners = SetUpGridSearchBoundaries(targetData);
@@ -147,7 +149,7 @@ public class EnemyTileManager : MonoBehaviour
                     TileProperties tempTileProperties = occupiedTiles[i].GetComponent<TileProperties>();
                     tempArray = tempTileProperties.GetTileCoordinates();
                     x = tempEnemyDisplay.TravelDistance;
-                    TileProperties newTargetTile = EnemyTileDict[tempArray[1] + x ][ tempArray[0]].GetComponent<TileProperties>();
+                    TileProperties newTargetTile = EnemyTileDict[tempArray[0] + x ][ tempArray[1]].GetComponent<TileProperties>();
                     if(!newTargetTile.GetIsOccupied())
                     {
                         GameObject enemyObject = tempTileProperties.GetOccupant();

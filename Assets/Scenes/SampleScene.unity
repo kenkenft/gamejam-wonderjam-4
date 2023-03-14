@@ -211,10 +211,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemySpawnZones: []
   _enemySpawnPool: []
-  EnemyObjectPool: []
   EnemyPrefabPool: []
   EnemyPrefab: {fileID: 4570193921610193643, guid: f98c060465e1c0842a1e95a266adb136, type: 3}
-  CannonInstance: {fileID: 0}
+  CannonInstance: {fileID: 333785713}
   EnemyTileManagerInstance: {fileID: 177247782}
 --- !u!114 &177247782
 MonoBehaviour:
@@ -230,8 +229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tile: {fileID: 5032536872946540782, guid: 2cdda0009066285478484f1c467c451b, type: 3}
   CannonInstance: {fileID: 333785713}
-  BoardHeight: 8
-  BoardWidth: 6
 --- !u!1 &206926161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9078053029960475559, guid: 855dda10218195e4bbfd21fab6fd0bcf, type: 3}

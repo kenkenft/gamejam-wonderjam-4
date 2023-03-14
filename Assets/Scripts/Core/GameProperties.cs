@@ -44,7 +44,7 @@ public class GameProperties
                                                                                                                     {0, new string[] {"s0", "s0", "m0", "m0", "l0", "l0"}}
                                                                                                                 };
     
-    private static int[] _enemyGridDimensions = new int[] {8, 6};
+    private static int[] _enemyGridDimensions = new int[] {6, 8};
     public static CannonBall GetCannonBallType(string size, int typeIDNum)
     {
         return _cannonBallTypeDict[size][typeIDNum];
