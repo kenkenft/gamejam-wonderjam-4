@@ -41,7 +41,7 @@ public class GameProperties
     
     private static Dictionary<int, string[]> _enemySpawnPools = new Dictionary<int, string[]>()
                                                                                                                 {
-                                                                                                                    {0, new string[] {"s0", "s0", "m0", "m0", "l0", "l0"}}
+                                                                                                                    {0, new string[] {"s0", "s0", "m0", "m0", "l0", "l0", "s0", "s0", "m0", "m0", "l0", "l0", "s0", "s0", "m0", "m0", "l0", "l0"}}
                                                                                                                 };
     
     private static int[] _enemyGridDimensions = new int[] {6, 8};

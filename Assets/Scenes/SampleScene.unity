@@ -215,7 +215,7 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 4570193921610193643, guid: f98c060465e1c0842a1e95a266adb136, type: 3}
   CannonInstance: {fileID: 333785713}
   EnemyTileManagerInstance: {fileID: 177247782}
-  _spawnTimer: 3
+  _spawnTimer: 2
 --- !u!114 &177247782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 318094110}
   - component: {fileID: 318094111}
   - component: {fileID: 318094113}
-  - component: {fileID: 318094112}
+  - component: {fileID: 318094114}
   m_Layer: 0
   m_Name: Replay
   m_TagString: Untagged
@@ -282,19 +282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetState: 1
---- !u!65 &318094112
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318094109}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.25, y: 2.25, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &318094113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -302,7 +289,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318094109}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -347,6 +334,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &318094114
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318094109}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.6666667, y: 2.6666667}
+    newSize: {x: 4, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6666667, y: 2.6666667}
+  m_EdgeRadius: 0
 --- !u!4 &333785711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8611959356801295785, guid: 9cc537cfb1b1acc428a16777d4049ed5, type: 3}
@@ -1207,7 +1220,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959183001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

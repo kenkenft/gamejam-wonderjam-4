@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
     public EnemyTileManager EnemyTileManagerInstance;
-    [SerializeField] private int _spawnTimer = 3;
+    [SerializeField] private int _spawnTimer = 2, _spawnCounter;
 
     [HideInInspector]public delegate bool OnPhaseThree();
     [HideInInspector]public static OnPhaseThree AnyEnemiesOnGrid;
@@ -30,6 +30,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void SetUpEnemies()
     {
+        _spawnCounter = _spawnTimer;
         SetUpSpawnZones();
         SetUpEnemyPool();
         SpawnEnemies(4);
@@ -70,20 +71,21 @@ public class EnemyManager : MonoBehaviour
     {
         if(IsSpawnSpaceAvailable())
         {
-            SpawnEnemies(2);
-            _spawnTimer = 4;
+            int rand = UnityEngine.Random.Range(0,GameProperties.GetEnemyGridDimensions()[0]-1);
+            SpawnEnemies(rand);
+            _spawnCounter = UnityEngine.Random.Range(0,_spawnTimer);;
         }
             
     }
 
     bool IsTimeToSpawn()
     {
-        if(_spawnTimer <= 0)
+        if(_spawnCounter <= 0)
             return true;
         else
         {   
-            _spawnTimer--;
-            _spawnTimer = Mathf.Clamp(_spawnTimer, 0, 999); 
+            _spawnCounter--;
+            _spawnCounter = Mathf.Clamp(_spawnCounter, 0, 999); 
             return false;
         }
     }
@@ -109,7 +111,8 @@ public class EnemyManager : MonoBehaviour
                 // SetEnemyData(i, GetFromPool());
             }
         }
-        SetEnemyData(tempList[UnityEngine.Random.Range(0,tempList.Count-1)], GetFromPool());
+        if(tempList.Count > 0)
+            SetEnemyData(tempList[UnityEngine.Random.Range(0,tempList.Count-1)], GetFromPool());
     }
 
     string GetFromPool()

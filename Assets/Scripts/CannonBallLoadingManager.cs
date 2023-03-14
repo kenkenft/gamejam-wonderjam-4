@@ -65,7 +65,7 @@ public class CannonBallLoadingManager : MonoBehaviour
 
         rand = UnityEngine.Random.Range(0,_cannonBallPool.Count-1);
         selected = _cannonBallPool[rand];
-        _cannonBallPool.RemoveAt(rand);
+        // _cannonBallPool.RemoveAt(rand);
 
         return selected;
     }
