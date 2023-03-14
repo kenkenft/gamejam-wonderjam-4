@@ -22,14 +22,20 @@ public class EndScreen : MonoBehaviour
         {
             case 7:
             {
+                Debug.Log("EndScreen.CheckGameState.Case7");
                 this.GetComponent<SpriteRenderer>().enabled = true;
+                Debug.Log("EndScreen enabled status: " + this.GetComponent<SpriteRenderer>().enabled);
                 ReplayButton.GetComponent<SpriteRenderer>().enabled = true;
+                Debug.Log("EndScreen enabled status: " + ReplayButton.GetComponent<SpriteRenderer>().enabled);
+                // ReplayButton.GetComponent<Collider2D>().enabled = true;
+                Debug.Log("EndScreen.CheckGameState.Case7");
                 break;
             }
             default:
             {
-                this.GetComponent<SpriteRenderer>().enabled = false;
-                ReplayButton.GetComponent<SpriteRenderer>().enabled = false;
+                // Debug.Log("EndScreen.CheckGameState.DefaultCase:" + gameState);
+                // this.GetComponent<SpriteRenderer>().enabled = false;
+                // ReplayButton.GetComponent<SpriteRenderer>().enabled = false;
                 break;
             }
         }

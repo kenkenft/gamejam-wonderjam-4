@@ -13,11 +13,6 @@ public class TileProperties : MonoBehaviour
     [HideInInspector]public delegate void OnMouseOvering(int[] tileCoords, bool isHighlight);
     [HideInInspector]public static OnMouseOvering PassAlongForHighlighting;
 
-    public void SetUp()
-    {
-
-    }
-
     public void SetTileCoordinates(int col, int row)
     {
         tileXY[0] = col;

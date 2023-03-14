@@ -230,10 +230,16 @@ public class EnemyTileManager : MonoBehaviour
             case 0:
                 break;
             case 1:
-            {
-                // Debug.Log("EnemyTileManager.Case1");
-                SetUpBoard();
+            {   
+                SetUpBoard(); 
                 CannonManager.SetGameState(2);
+                break;
+            }
+            case 2:
+            {
+                // Debug.Log("EnemyTileManager.Case2");
+                // SetUpBoard();
+                // CannonManager.SetGameState(3);
                 break;
             }
             case 4:

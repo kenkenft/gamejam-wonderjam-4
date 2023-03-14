@@ -25,7 +25,7 @@ public class CannonManager : MonoBehaviour
 
     public static void SetGameState(int state)
     {
-        int counter = OnGameStateChange.GetInvocationList().Length;
+        // int counter = OnGameStateChange.GetInvocationList().Length;
         // Debug.Log("Number of subscribers to OnGameStateChange:" + counter);
         if(state != _gameState)
         {

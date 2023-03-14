@@ -45,6 +45,8 @@ public class CannonBallLoadingManager : MonoBehaviour
         string[] tempArray = PlayerDataInstance.GetCannonBallPool(targetPool);
         for(int i = 0; i < tempArray.Length; i++)
             _cannonBallPool.Add(tempArray[i]);
+
+        Debug.Log("_cannonBallPool count:"+ _cannonBallPool.Count);
     }
 
     public void ReplenishSelectableCannonBalls()
@@ -101,7 +103,7 @@ public class CannonBallLoadingManager : MonoBehaviour
         {
             case 2:
             {
-                // Debug.Log("CanonProperties.Case2");
+                Debug.Log("CanonProperties.Case2");
                 SetUpLoadingPhase();
                 CannonManager.SetGameState(GameProperties.GetPhaseID("loading"));
                 break;
