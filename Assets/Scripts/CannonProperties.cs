@@ -11,8 +11,6 @@ public class CannonProperties : MonoBehaviour
     [SerializeField] private GameObject _loadedCannonBallArea;
     [HideInInspector]public delegate void OnCheckAimingDelegate(int buttonState);
     [HideInInspector]public static OnCheckAimingDelegate OnCheck;
-    [HideInInspector]public delegate void OnEnterPhase(List<GameObject> list);
-    [HideInInspector]public static OnEnterPhase UnloadCannon;
 
     [HideInInspector]public delegate void OnCheckHit(int[] targetData);
     [HideInInspector]public static OnCheckHit CheckHitAnything;
@@ -20,11 +18,13 @@ public class CannonProperties : MonoBehaviour
     private void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
+        CannonBallLoadingManager.UnloadCannon += EmptyCannon;
     }
 
     private void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
+        CannonBallLoadingManager.UnloadCannon -= EmptyCannon;
     }
 
     public void LoadInToCannon(GameObject cannonBallZone)
@@ -50,6 +50,22 @@ public class CannonProperties : MonoBehaviour
         int lastIndex = _loadedCannonBalls.Count-1;
         _cannonUsedCapacity =- _loadedCannonBalls[lastIndex].GetComponentInChildren<CannonBallDisplay>().CapacitySize;
         _loadedCannonBalls.RemoveAt(lastIndex);  
+    }
+
+    public void EmptyCannon()
+    {
+        //Does something to unload cannonballs?
+        TileProperties tileProperties;
+        for(int i = 0; i< _loadedCannonBalls.Count; i++)
+        {
+            tileProperties = _loadedCannonBalls[i].GetComponent<TileProperties>();
+            tileProperties.GetOccupant().transform.position = _loadedCannonBalls[i].transform.position;
+            tileProperties.SetIsOccupied(true);
+        }
+
+        _loadedCannonBalls.Clear();
+        _cannonUsedCapacity=0;
+
     }
 
     public void CheckAimingPhaseCriteria()
@@ -141,8 +157,6 @@ public class CannonProperties : MonoBehaviour
             {
                 Debug.Log("CannonProperties.Case3");
                 DeselectAllTargets();
-                UnloadCannon?.Invoke(_loadedCannonBalls);
-
                 break;
             }
 

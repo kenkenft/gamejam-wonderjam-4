@@ -12,17 +12,17 @@ public class CannonBallLoadingManager : MonoBehaviour
 
     public List<GameObject> CannonBallObjectPool = new List<GameObject>(){};
     public CannonProperties CannonInstance;
+    [HideInInspector]public delegate void OnEnterPhase();
+    [HideInInspector]public static OnEnterPhase UnloadCannon;
     
     private void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
-        CannonProperties.UnloadCannon += EmptyCannon;
     }
 
     private void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
-        CannonProperties.UnloadCannon -= EmptyCannon;
     }
     public void SetUpLoadingPhase()
     {
@@ -44,11 +44,6 @@ public class CannonBallLoadingManager : MonoBehaviour
         string[] tempArray = PlayerDataInstance.GetCannonBallPool(targetPool);
         for(int i = 0; i < tempArray.Length; i++)
             _cannonBallPool.Add(tempArray[i]);
-    }
-
-    public void EmptyCannon(List<GameObject> loadedCannonBalls)
-    {
-        //Does something to unload cannonballs?
     }
 
     public void ReplenishSelectableCannonBalls()
@@ -120,6 +115,7 @@ public class CannonBallLoadingManager : MonoBehaviour
                 Debug.Log("CanonProperties.Case3");
                 SetZonesCannonReference();
                 SetZonesSelectableState(true);
+                UnloadCannon?.Invoke();
                 ReplenishSelectableCannonBalls();
                 break;
             }
