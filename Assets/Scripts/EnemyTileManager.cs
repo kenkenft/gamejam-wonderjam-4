@@ -18,6 +18,7 @@ public class EnemyTileManager : MonoBehaviour
         CannonManager.OnGameStateChange += CheckGameState;
         CannonProperties.CheckHitAnything += CheckHitAnything;
         EnemyManager.AnyEnemiesOnGrid += CheckAnyOccupants;
+        CannonProperties.PassToEnemyTileManager += HighlightAffectedTiles;
     }
 
     private void OnDisable()
@@ -25,6 +26,7 @@ public class EnemyTileManager : MonoBehaviour
         CannonManager.OnGameStateChange -= CheckGameState;
         CannonProperties.CheckHitAnything -= CheckHitAnything;
         EnemyManager.AnyEnemiesOnGrid -= CheckAnyOccupants;
+        CannonProperties.PassToEnemyTileManager += HighlightAffectedTiles;
     }
     public void SetUpBoard()
     {
@@ -197,6 +199,11 @@ public class EnemyTileManager : MonoBehaviour
         {
             return true;
         }
+    }
+
+    void HighlightAffectedTiles(int[] tileCoords, bool isHighlight, int blastRadius)
+    {
+        Debug.Log("tileCoords: " +tileCoords[0] + ", " + tileCoords[1] + ". isHighlight: " + isHighlight + ". blastRadius: " + blastRadius);
     }
     void CheckGameState(int gameState)
     {

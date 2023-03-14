@@ -15,16 +15,22 @@ public class CannonProperties : MonoBehaviour
     [HideInInspector]public delegate void OnCheckHit(int[] targetData);
     [HideInInspector]public static OnCheckHit CheckHitAnything;
 
+    [HideInInspector]public delegate void PassAlongStuff(int[] tileCoords, bool isHighlight, int blastRadius);
+    [HideInInspector]public static PassAlongStuff PassToEnemyTileManager;
+
+
     private void OnEnable()
     {
         CannonManager.OnGameStateChange += CheckGameState;
         CannonBallLoadingManager.UnloadCannon += EmptyCannon;
+        TileProperties.PassAlongForHighlighting += ReceiveForHighlight;
     }
 
     private void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
         CannonBallLoadingManager.UnloadCannon -= EmptyCannon;
+        TileProperties.PassAlongForHighlighting -= ReceiveForHighlight;
     }
 
     public void LoadInToCannon(GameObject cannonBallZone)
@@ -149,6 +155,11 @@ public class CannonProperties : MonoBehaviour
 
         CheckHitAnything?.Invoke(targetData);
 
+    }
+
+    void ReceiveForHighlight(int[] tileCoords, bool isHighlight)
+    {
+        PassToEnemyTileManager?.Invoke(tileCoords, isHighlight,_loadedCannonBalls[_selectedTargets.Count].GetComponentInChildren<CannonBallDisplay>().AreaOfEffect);
     }
 
     void CheckGameState(int gameState)

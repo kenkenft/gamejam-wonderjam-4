@@ -10,6 +10,9 @@ public class TileProperties : MonoBehaviour
     [SerializeField] private SpriteRenderer _tileReticle;
     [SerializeField] private CannonProperties _cannonProperties;
 
+    [HideInInspector]public delegate void OnMouseOvering(int[] tileCoords, bool isHighlight);
+    [HideInInspector]public static OnMouseOvering PassAlongForHighlighting;
+
     public void SetUp()
     {
 
@@ -45,6 +48,16 @@ public class TileProperties : MonoBehaviour
         else
         {
             Debug.Log("Tile is not targetable");
+        }
+    }
+
+    void OnMouseOver()
+    {
+        Debug.Log("MouseOVER!");
+        if((CannonManager.GetGameState() == 4) && _isTargetable)
+        {
+            Debug.Log("Highlight Tiles");
+            PassAlongForHighlighting?.Invoke(tileXY, true);
         }
     }
 
