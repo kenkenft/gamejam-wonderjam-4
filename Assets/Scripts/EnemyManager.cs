@@ -184,7 +184,7 @@ public class EnemyManager : MonoBehaviour
             case 3:
             {
                 // Debug.Log("EnemyManager.Case3");
-                if(_enemySpawnPool.Count <= 0)
+                if(_enemySpawnPool.Count <= 0 && !AnyEnemiesOnGrid.Invoke())
                     CannonManager.SetGameState(7);
                 else if((IsTimeToSpawn() || !AnyEnemiesOnGrid.Invoke()) && _enemySpawnPool.Count > 0 )
                     SpawnMoreEnemies();

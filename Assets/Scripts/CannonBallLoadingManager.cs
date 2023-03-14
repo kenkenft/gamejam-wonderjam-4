@@ -87,7 +87,10 @@ public class CannonBallLoadingManager : MonoBehaviour
     public void SetZonesSelectableState(bool state)
     {
         for(int i = 0 ; i < SelectableCannonBallZones.Length; i++)
+        {
             SelectableCannonBallZones[i].GetComponent<TileProperties>().SetIsTargetable(state);
+            SelectableCannonBallZones[i].GetComponent<TileProperties>().SetTileReticle(!state);
+        }
     }
 
     void SetZonesCannonReference()

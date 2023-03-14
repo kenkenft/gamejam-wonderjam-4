@@ -97,6 +97,7 @@ public class TileProperties : MonoBehaviour
             {
                 // Debug.Log("TileProperties.Case3");
                 _cannonProperties.LoadInToCannon(this.gameObject);
+                _isTargetable = false;
                 break;
             }
             case 4:

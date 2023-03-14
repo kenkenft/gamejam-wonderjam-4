@@ -8,10 +8,10 @@ public class PlayerData : ScriptableObject
 
     [SerializeField] private Dictionary<string, string[]> _poolDictionary = new Dictionary<string, string[]>()
                                                                                         {
-                                                                                            {"s", new string[8]},
-                                                                                            {"m", new string[6]},
-                                                                                            {"l", new string[4]},
-                                                                                            {"x", new string[2]}
+                                                                                            {"s", new string[40]},
+                                                                                            {"m", new string[20]},
+                                                                                            {"l", new string[10]},
+                                                                                            {"x", new string[1]}
                                                                                         };
     private int _playerMoney, _playerScore;
 
@@ -28,7 +28,7 @@ public class PlayerData : ScriptableObject
     {
         for(int i = 0; i < pool.Length; i++)
         {    
-            if(i % 2 == 0)
+            if(typePrefix == "s" || typePrefix == "l")
                 pool[i] = typePrefix + 0.ToString();
             else
                 pool[i] = typePrefix + 1.ToString();

@@ -45,7 +45,7 @@ public class CannonProperties : MonoBehaviour
             _cannonUsedCapacity += cannonBallCapacity;
         }
         else
-            Debug.Log("Capacity would be exceeded! Cannot load!");
+            cannonBallZone.GetComponent<TileProperties>().SetTileReticle(false);
 
         CheckAimingPhaseCriteria();
     }
@@ -68,6 +68,7 @@ public class CannonProperties : MonoBehaviour
             {
                 tileProperties = _loadedCannonBalls[i].GetComponent<TileProperties>();
                 tileProperties.GetOccupant().transform.position = _loadedCannonBalls[i].transform.position;
+                tileProperties.SetTileReticle(false);
                 tileProperties.SetIsOccupied(true);
             }
         }
