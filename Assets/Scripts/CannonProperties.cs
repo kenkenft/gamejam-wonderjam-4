@@ -34,6 +34,7 @@ public class CannonProperties : MonoBehaviour
         {    
             _loadedCannonBalls.Add(cannonBallZone);
             cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.position = _loadedCannonBallArea.transform.position;
+            cannonBallZone.GetComponent<TileProperties>().SetIsOccupied(false);
             // cannonBallZone.GetComponentInChildren<CannonBallDisplay>().gameObject.transform.parent = _loadedCannonBallArea.transform;
             _cannonUsedCapacity += cannonBallCapacity;
         }

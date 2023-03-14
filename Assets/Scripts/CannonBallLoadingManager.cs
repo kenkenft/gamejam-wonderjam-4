@@ -120,6 +120,7 @@ public class CannonBallLoadingManager : MonoBehaviour
                 Debug.Log("CanonProperties.Case3");
                 SetZonesCannonReference();
                 SetZonesSelectableState(true);
+                ReplenishSelectableCannonBalls();
                 break;
             }
             case 4:

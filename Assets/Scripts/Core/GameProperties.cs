@@ -52,8 +52,8 @@ public class GameProperties
 
     public static Enemy GetEnemyType(string size, int typeIDNum)
     {
-        Debug.Log("Enemy size: " + size  + ". typeIDNum: " + typeIDNum);
-        Debug.Log("Dictionary size: " + _enemyTypeDict.Count + ". Type array size: " + _enemyTypeDict[size].Length);
+        // Debug.Log("Enemy size: " + size  + ". typeIDNum: " + typeIDNum);
+        // Debug.Log("Dictionary size: " + _enemyTypeDict.Count + ". Type array size: " + _enemyTypeDict[size].Length);
         return _enemyTypeDict[size][typeIDNum];
     }
 
