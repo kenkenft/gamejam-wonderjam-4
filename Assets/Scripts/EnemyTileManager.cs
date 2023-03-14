@@ -17,12 +17,14 @@ public class EnemyTileManager : MonoBehaviour
     {
         CannonManager.OnGameStateChange += CheckGameState;
         CannonProperties.CheckHitAnything += CheckHitAnything;
+        EnemyManager.AnyEnemiesOnGrid += CheckAnyOccupants;
     }
 
     private void OnDisable()
     {
         CannonManager.OnGameStateChange -= CheckGameState;
         CannonProperties.CheckHitAnything -= CheckHitAnything;
+        EnemyManager.AnyEnemiesOnGrid -= CheckAnyOccupants;
     }
     public void SetUpBoard()
     {
@@ -126,6 +128,19 @@ public class EnemyTileManager : MonoBehaviour
         }
     }
 
+    bool CheckAnyOccupants()
+    {
+        int[] tempArray = new int[] {_gridWidth, _gridHeight};
+        int x = tempArray[0] > tempArray[1] ? tempArray[0] : tempArray[1];
+        int[] targetData = {0, 0, 0, x};
+        int[] searchGridCorners = SetUpGridSearchBoundaries(targetData);
+
+        List<GameObject> occupiedTiles = FindOccupiedTiles(searchGridCorners);
+        if(occupiedTiles.Count > 0)
+            return true;
+        else
+            return false;
+    }
     void EnemiesBehaviour()
     {
         int[] tempArray = new int[] {_gridWidth, _gridHeight};

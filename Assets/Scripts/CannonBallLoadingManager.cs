@@ -37,6 +37,7 @@ public class CannonBallLoadingManager : MonoBehaviour
         GetCannonBallPool("s");
         GetCannonBallPool("m");
         GetCannonBallPool("l");
+        GetCannonBallPool("x");
     }
 
     public void GetCannonBallPool(string targetPool)

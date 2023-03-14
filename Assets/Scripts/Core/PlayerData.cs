@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New PlayerData", menuName = "Player Data")]
 public class PlayerData : ScriptableObject
 {
-    // private int[] _cannonBallPoolSmall = new int[8], _cannonBallPoolMedium = new int[6], 
-    //                     _cannonBallPoolLarge = new int[4], _cannonBallPoolXLarge = new int[2];  // Array values represent the CannonBall type's id
 
     [SerializeField] private Dictionary<string, string[]> _poolDictionary = new Dictionary<string, string[]>()
                                                                                         {
@@ -20,10 +18,6 @@ public class PlayerData : ScriptableObject
     public void ResetPlayerData()
     {
         _playerMoney = 0;
-        // SetPoolToDefault(_cannonBallPoolSmall);
-        // SetPoolToDefault(_cannonBallPoolMedium);
-        // SetPoolToDefault(_cannonBallPoolLarge);
-        // SetPoolToDefault(_cannonBallPoolXLarge);
         SetPoolToDefault(_poolDictionary["s"], "s");
         SetPoolToDefault(_poolDictionary["m"], "m");
         SetPoolToDefault(_poolDictionary["l"], "l");
@@ -38,7 +32,6 @@ public class PlayerData : ScriptableObject
                 pool[i] = typePrefix + 0.ToString();
             else
                 pool[i] = typePrefix + 1.ToString();
-
         }
     }
 
@@ -56,48 +49,10 @@ public class PlayerData : ScriptableObject
     {
         ResetPlayerData();
         return _poolDictionary[target];
-        // switch(target)
-        // {
-        //     case "small":
-        //         return _cannonBallPoolSmall;
-        //     case "medium":
-        //         return _cannonBallPoolMedium;
-        //     case "large":
-        //         return _cannonBallPoolLarge;
-        //     case "xlarge":
-        //         return _cannonBallPoolXLarge;
-        //     default:
-        //         return _cannonBallPoolMedium;
-        // }
     }
 
     public void SetCannonBallPool(string target, int arrayIndex, int cannonBallTypeID)
     {
         _poolDictionary[target][arrayIndex] = target + cannonBallTypeID.ToString();
-        //  switch(target)
-        //  {
-        //     case "small":
-        //     {    
-        //         _cannonBallPoolSmall[arrayIndex] = typeID;
-        //         break;
-        //     }
-        //     case "medium":
-        //     {    
-        //         _cannonBallPoolMedium[arrayIndex] = typeID;
-        //         break;
-        //     }
-        //     case "large":
-        //     {    
-        //         _cannonBallPoolLarge[arrayIndex] = typeID;
-        //         break;
-        //     }
-        //     case "xlarge":
-        //     {    
-        //         _cannonBallPoolXLarge[arrayIndex] = typeID;
-        //         break;
-        //     }
-        //     default:
-        //         break;
-        // }
     }
 }

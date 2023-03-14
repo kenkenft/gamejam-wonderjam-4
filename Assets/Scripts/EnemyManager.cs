@@ -14,7 +14,10 @@ public class EnemyManager : MonoBehaviour
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
     public EnemyTileManager EnemyTileManagerInstance;
-    [SerializeField] private int _spawnTimer = 4;
+    [SerializeField] private int _spawnTimer = 3;
+
+    [HideInInspector]public delegate bool OnPhaseThree();
+    [HideInInspector]public static OnPhaseThree AnyEnemiesOnGrid;
     
     private void OnEnable()
     {
@@ -178,7 +181,7 @@ public class EnemyManager : MonoBehaviour
             case 3:
             {
                 Debug.Log("EnemyManager.Case3");
-                if(IsTimeToSpawn() && _enemySpawnPool.Count > 0)
+                if((IsTimeToSpawn() && _enemySpawnPool.Count > 0) || !AnyEnemiesOnGrid.Invoke())
                     SpawnMoreEnemies();
                 break;
             }
