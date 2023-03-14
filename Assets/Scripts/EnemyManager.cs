@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject EnemyPrefab;
     public CannonProperties CannonInstance;
     public EnemyTileManager EnemyTileManagerInstance;
-    private int _spawnTimer = 4;
+    [SerializeField] private int _spawnTimer = 4;
     
     private void OnEnable()
     {
@@ -70,8 +70,7 @@ public class EnemyManager : MonoBehaviour
             SpawnEnemies(2);
             _spawnTimer = 4;
         }
-        else
-            Mathf.Clamp(_spawnTimer--, 0, 999);
+            
     }
 
     bool IsTimeToSpawn()
@@ -79,7 +78,11 @@ public class EnemyManager : MonoBehaviour
         if(_spawnTimer <= 0)
             return true;
         else
+        {   
+            _spawnTimer--;
+            _spawnTimer = Mathf.Clamp(_spawnTimer, 0, 999); 
             return false;
+        }
     }
 
     bool IsSpawnSpaceAvailable()
